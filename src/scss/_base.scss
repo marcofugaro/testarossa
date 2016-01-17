@@ -1,0 +1,24 @@
+html {
+    font-family: $primary-font;
+    color: $black;
+    
+    font-size: 16px;
+    @include breakpoint($font-size-breakpoint) {
+        font-size: 14px;
+    }
+}
+
+::selection {
+    background: $primary-color;
+    color: white;
+    text-shadow: none;
+}
+
+//a {
+//    text-decoration: none;
+//    color: $primary-color;
+//    &:hover {
+//        text-decoration: underline;
+//    }
+//}
+

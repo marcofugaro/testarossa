@@ -1,0 +1,11 @@
+build
+
+node_modules
+bower_components
+*.log
+
+*.sublime-project
+*.sublime-workspace
+.idea
+
+.DS_Store

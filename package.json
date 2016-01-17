@@ -1,0 +1,29 @@
+{
+  "name": "gulp-frontend-boilerplate",
+  "version": "0.0.1",
+  "description": "Gulp boilerplate for a standard Front-end website",
+  "author": "Marco Fugaro <marco.fugaro@gmail.com> (http://marcofugaro.it/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcofugaro/gulp-frontend-boilerplate"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "gulp",
+    "scss",
+    "sass",
+    "browserify",
+    "npm",
+    "boilerplate"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "brfs": "^1.4.2",
+    "browser-sync": "^2.11.0",
+    "browserify": "^13.0.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0"
+  }
+}
