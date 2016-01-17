@@ -17,7 +17,9 @@ module.exports = function(config) {
         var b = browserify({
             entries: [config.sourceDir + 'js/main.js'],
             debug: config.browserify.sourcemaps,
-            fullPaths: !global.isProduction //why??
+            cache: {},
+            packageCache: {},
+            fullPaths: !global.isProduction //why?? try to remove these three http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
         });
 
 
