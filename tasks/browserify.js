@@ -37,7 +37,7 @@ module.exports = function(config) {
         });
 
 
-        var sourceMapLocation = global.isProduction ? './' : '';
+        // var sourceMapLocation = global.isProduction ? './' : ''; //TODo test if this works in local
 
 
         function bundle() {
@@ -47,7 +47,7 @@ module.exports = function(config) {
                 .pipe(buffer())
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.init({ loadMaps: true })))
                 .pipe(gulpif(global.isProduction, uglify({ compress: { drop_console: true /*why??*/ } })))
-                .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.write(sourceMapLocation)))
+                .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.write('./')))
                 .pipe(gulp.dest(config.scripts.dest))
                 .pipe(gulpif(config.browserSync.autoreload, browserSync.stream()));
             }
