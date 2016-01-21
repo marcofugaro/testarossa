@@ -21,7 +21,7 @@ module.exports = function(config) {
             .pipe(autoprefixer('last 2 versions', '> 1%', 'ie 9'))
             .pipe(rename({ suffix: '.min' }))
             .pipe(gulpif(config.styles.sourcemaps, sourcemaps.write()))
-            .pipe(gulp.dest(config.styles.dest));
+            .pipe(gulp.dest(config.styles.dest))
             .pipe(gulpif(config.browserSync.autoreload, browserSync.stream()));
     });
 }

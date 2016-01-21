@@ -10,6 +10,6 @@ module.exports = function(config) {
         global.isProduction = false;
 
         // runSequence(['styles', 'images', 'fonts', 'browserify'], 'watch', cb);
-        return runSequence(['styles', 'images', 'fonts', 'browserify'], 'watch'); //TODO check if this shit works
+        return runSequence(['styles', 'images', 'fonts', 'browserify'], 'watch'); //TODO check if this shit works in deployment
     });
 }
