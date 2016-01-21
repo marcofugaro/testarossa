@@ -1,8 +1,9 @@
+'use strict';
+
 var gulp = require('gulp');
 var fs = require('fs');
+var assign = require('lodash.assign');
 // var requireDir = require('require-dir');
-
-'use strict';
 
 var config = {
     sourceDir: './src/',
@@ -10,42 +11,46 @@ var config = {
     gzip: true
 };
 
-config.styles = {
-    src: config.sourceDir + 'scss/**/*.scss',
-    dest: config.buildDir + 'css',
-    sourcemaps: true
-};
+assign(config, {
 
-config.scripts = {
-    src: config.sourceDir + 'js/**/*.js',
-    dest: config.buildDir + 'js'
-};
+    styles: {
+        src: config.sourceDir + 'scss/**/*.scss',
+        dest: config.buildDir + 'css',
+        sourcemaps: true
+    },
 
-config.images = {
-    src: config.sourceDir + 'images/**/*',
-    dest: config.buildDir + 'images'
-};
+    scripts: {
+        src: config.sourceDir + 'js/**/*.js',
+        dest: config.buildDir + 'js'
+    },
 
-config.fonts = {
-    src: [config.sourceDir + 'fonts/**/*'],
-    dest: config.buildDir + 'fonts'
-};
+    images: {
+        src: config.sourceDir + 'images/**/*',
+        dest: config.buildDir + 'images'
+    },
 
-config.browserSync = {
-    browserPort: 3000,
-    UIPort: 3001,
-    autoreload: true
-};
+    fonts: {
+        src: [config.sourceDir + 'fonts/**/*'],
+        dest: config.buildDir + 'fonts'
+    },
 
-config.browserify = {
-    bundleName: 'main.js',
-    sourcemaps: false
-};
+    browserSync: {
+        browserPort: 3000,
+        UIPort: 3001,
+        autoreload: true
+    },
 
-config.test = {
-    karma: 'test/karma.conf.js',
-    protractor: 'test/protractor.conf.js'
-};
+    browserify: {
+        bundleName: 'main.js',
+        sourcemaps: false
+    },
+
+    test: {
+        karma: 'test/karma.conf.js',
+        protractor: 'test/protractor.conf.js'
+    },
+
+});
 
 
 //var tasks = requireDir('./tasks', { args: config }); //Possible when they accept pull requests at requireDir
