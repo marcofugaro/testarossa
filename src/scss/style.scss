@@ -1,25 +1,17 @@
-@import 'helpers/helper-classes';
-@import 'helpers/normalize';
-@import 'helpers/susy';
-@import 'helpers/breakpoint';
-@import 'helpers/easing';
-@import 'helpers/font-face';
+//SMACSS file architecture - https://smacss.com/
+
+//@import 'vendor/bootstrap'; //TODO how to handle vendor scss?
+//@import 'vendor/fontawesome';
+// @import 'vendor/normalize';
+// @import 'vendor/susy';
+// @import 'vendor/breakpoint';
+
+@import 'helpers/**/*.scss';
 
 @import 'vars';
-
-
-//@import 'vendor/bootstrap';
-//@import 'vendor/fontawesome';
-
-
 @import 'base';
+@import 'typography';
 
-//@import 'layout/header';
-//@import 'layout/nav';
-//@import 'layout/main';
-//@import 'layout/sidebar';
-//@import 'layout/footer';
+@import 'modules/**/*.scss';
 
-//@import 'modules/article';
-//@import 'modules/button';
-//@import 'modules/text-input';
+@import 'layout/**/*.scss';
