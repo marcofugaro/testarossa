@@ -14,7 +14,7 @@ var config = {
 assign(config, {
 
     styles: {
-        src: config.sourceDir + 'scss/**/*.scss',
+        src: config.sourceDir + 'sass/**/*.scss',
         dest: config.buildDir + 'css',
         sourcemaps: true
     },
