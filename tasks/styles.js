@@ -8,7 +8,7 @@ module.exports = function(config) {
     var sassGlob = require('gulp-sass-glob');
     var sass = require('gulp-sass');
     var notify = require('gulp-notify');
-    var remane = require('gulp-rename');
+    var rename = require('gulp-rename');
     var browserSync = require('browser-sync');
     var autoprefixer = require('gulp-autoprefixer');
 
@@ -17,7 +17,7 @@ module.exports = function(config) {
         return gulp.src(config.styles.src)
             .pipe(gulpif(config.styles.sourcemaps, sourcemaps.init()))
             .pipe(sassGlob())
-            .pipe(sass({ outputStyle: 'compressed' })).on('error', notify.onError('<%= error.message %>')))
+            .pipe(sass({ outputStyle: 'compressed' })).on('error', notify.onError('<%= error.message %>'))
             .pipe(autoprefixer('last 2 versions', '> 1%', 'ie 9'))
             .pipe(rename({ suffix: '.min' }))
             .pipe(gulpif(config.styles.sourcemaps, sourcemaps.write()))

@@ -1,10 +1,13 @@
-'use strict';
+module.exports = function(config) { 
 
-var gulp = require('gulp');
-var runSequence = require('run-sequence');
+    'use strict';
 
-gulp.task('test', ['browser-sync'], function() {
+    var gulp = require('gulp');
+    var runSequence = require('run-sequence');
 
-    return runSequence('unit', 'protractor');
+    gulp.task('test', ['browser-sync'], function() {
 
-});
+        return runSequence('unit', 'protractor');
+
+    });
+}

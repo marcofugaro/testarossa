@@ -9,6 +9,7 @@ module.exports = function(config) {
     var buffer = require('vinyl-buffer');
     var watchify = require('watchify');
     var browserify = require('browserify');
+    var notify = require('gulp-notify');
     var uglify = require('gulp-uglify');
     var browserSync = require('browser-sync');
 
@@ -50,7 +51,6 @@ module.exports = function(config) {
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.write('./')))
                 .pipe(gulp.dest(config.scripts.dest))
                 .pipe(gulpif(config.browserSync.autoreload, browserSync.stream()));
-            }
         }
 
         return bundle();

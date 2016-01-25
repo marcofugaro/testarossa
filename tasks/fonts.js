@@ -3,6 +3,7 @@ module.exports = function(config) {
     'use strict';
     
     var gulp = require('gulp');
+    var gulpif = require('gulp-if');
     var changed = require('gulp-changed');
     var browserSync = require('browser-sync');
 
