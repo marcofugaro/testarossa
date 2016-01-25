@@ -7,7 +7,7 @@ module.exports = function(config) {
 
     gulp.task('lint', function() {
       return gulp.src([config.scripts.src, '!app/js/templates.js'])
-        .pipe(jshint())
+        .pipe(jshint()) //todo add EShint
         .pipe(jshint.reporter('jshint-stylish')); //TODO add notify on fail reporter and test it https://github.com/spalger/gulp-jshint/issues/91
     });
 }
