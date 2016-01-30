@@ -10,6 +10,7 @@ module.exports = function(config) {
     var watchify = require('watchify');
     var browserify = require('browserify');
     var notify = require('gulp-notify');
+    var addsrc = require('gulp-add-src');
     var uglify = require('gulp-uglify');
     var browserSync = require('browser-sync');
 
@@ -47,9 +48,11 @@ module.exports = function(config) {
                 .pipe(source('main.js'))
                 .pipe(buffer())
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.init({ loadMaps: true })))
+                .pipe(gulpif(global.isProduction, addsrc.prepend(config.modernizr.tmp)))
                 .pipe(gulpif(global.isProduction, uglify({ compress: { drop_console: true /*why??*/ } })))
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.write('./')))
                 .pipe(gulp.dest(config.scripts.dest))
+                .pipe(callback(function() { return del(config.modernizr.tmp); }));  
                 .pipe(gulpif(config.browserSync.autoreload, browserSync.stream()));
         }
 
