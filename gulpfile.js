@@ -26,7 +26,7 @@ assign(config, {
 
     modernizr: {
         looking: [config.sourceDir +'sass/**/*.scss', config.sourceDir + 'js/**/*.js'], //TODO do we really nned assign?
-        tmp: config.sourceDir + 'js/modernizr.js'
+        tmp: config.buildDir + 'js/modernizr.js'
     },
 
     images: {
