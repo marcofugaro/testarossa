@@ -48,11 +48,11 @@ module.exports = function(config) {
                 .pipe(source('main.js'))
                 .pipe(buffer())
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.init({ loadMaps: true })))
-                .pipe(gulpif(global.isProduction, addsrc.prepend(config.modernizr.tmp)))
+                .pipe(gulpif(global.isProduction, addsrc.prepend(config.modernizr.tmp))) //addsrc or add? what if not found?
                 .pipe(gulpif(global.isProduction, uglify({ compress: { drop_console: true /*why??*/ } })))
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.write('./')))
                 .pipe(gulp.dest(config.scripts.dest))
-                .pipe(callback(function() { return del(config.modernizr.tmp); }));  
+                .pipe(gulpif(global.isProduction, callback(function() { return del(config.modernizr.tmp); }))) //what if not found?
                 .pipe(gulpif(config.browserSync.autoreload, browserSync.stream()));
         }
 
