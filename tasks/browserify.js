@@ -11,6 +11,8 @@ module.exports = function(config) {
     var browserify = require('browserify');
     var notify = require('gulp-notify');
     var addsrc = require('gulp-add-src');
+    var callback = require('gulp-callback');
+    var del = require('del');
     var uglify = require('gulp-uglify');
     var browserSync = require('browser-sync');
 
