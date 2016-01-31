@@ -11,6 +11,7 @@ module.exports = function(config) {
     var browserify = require('browserify');
     var notify = require('gulp-notify');
     var addsrc = require('gulp-add-src');
+    var concat = require('gulp-concat');
     var callback = require('gulp-callback');
     var del = require('del');
     var uglify = require('gulp-uglify');
@@ -47,10 +48,11 @@ module.exports = function(config) {
         function bundle() {
 
             return b.bundle().on('error', notify.onError('<%= error.message %>'))
-                .pipe(source('main.js'))
+                .pipe(source('main.min.js'))
                 .pipe(buffer())
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.init({ loadMaps: true })))
                 .pipe(gulpif(global.isProduction, addsrc.prepend(config.modernizr.tmp))) //addsrc or add? what if not found?
+                .pipe(gulpif(global.isProduction, concat('main.min.js')))
                 .pipe(gulpif(global.isProduction, uglify({ compress: { drop_console: true /*why??*/ } })))
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.write('./')))
                 .pipe(gulp.dest(config.scripts.dest))
