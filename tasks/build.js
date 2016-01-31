@@ -12,6 +12,6 @@ module.exports = function(config) {
         global.isProduction = true;
 
         // runSequence(['styles', 'images', 'fonts', 'browserify'], 'gzip', cb);
-        return runSequence('modernizr', ['styles', 'images', 'fonts', 'browserify'], 'gzip'); //TODO check if this shit works with deployment
+        return runSequence(['styles', 'images', 'fonts', 'browserify'], 'modernizr', 'gzip'); //TODO check if this shit works with deployment
     });
 }

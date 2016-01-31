@@ -10,10 +10,6 @@ module.exports = function(config) {
     var watchify = require('watchify');
     var browserify = require('browserify');
     var notify = require('gulp-notify');
-    var addsrc = require('gulp-add-src');
-    var concat = require('gulp-concat');
-    var callback = require('gulp-callback');
-    var del = require('del');
     var uglify = require('gulp-uglify');
     var browserSync = require('browser-sync');
 
@@ -51,12 +47,9 @@ module.exports = function(config) {
                 .pipe(source('main.min.js'))
                 .pipe(buffer())
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.init({ loadMaps: true })))
-                .pipe(gulpif(global.isProduction, addsrc.prepend(config.modernizr.tmp))) //addsrc or add? what if not found?
-                .pipe(gulpif(global.isProduction, concat('main.min.js')))
                 .pipe(gulpif(global.isProduction, uglify({ compress: { drop_console: true /*why??*/ } })))
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.write('./')))
                 .pipe(gulp.dest(config.scripts.dest))
-                .pipe(gulpif(global.isProduction, callback(function() { return del(config.modernizr.tmp); }))) //what if not found?
                 .pipe(gulpif(config.browserSync.autoreload, browserSync.stream()));
         }
 
