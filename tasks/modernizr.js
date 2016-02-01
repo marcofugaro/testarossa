@@ -10,15 +10,15 @@ module.exports = function(config) {
 
     gulp.task('modernizr', function() { 
 
-        if(!config.modernizr.enable) return;
+        if(!config.modernizr) return;
 
-        return gulp.src(config.modernizr.looking)  
+        return gulp.src([config.styles.src, config.scripts.src])  
             .pipe(modernizr({
                 options:  ['setClasses', 'addTest', 'testProp', 'fnBind']
             }))
             .pipe(uglify())
-            .pipe(addsrc.append(config.scripts.dest + '/main.min.js'))
-            .pipe(concat('main.min.js'))
+            .pipe(addsrc.append(config.browserify.dest))
+            .pipe(concat(config.browserify.bundleName))
             .pipe(gulp.dest(config.scripts.dest));  
     });
 }

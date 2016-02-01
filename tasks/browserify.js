@@ -16,7 +16,7 @@ module.exports = function(config) {
     gulp.task('browserify', function() {
       
         var b = browserify({
-            entries: [config.sourceDir + 'js/main.js'],
+            entries: [config.browserify.src],
             debug: config.browserify.sourcemaps,
             cache: {},
             packageCache: {},
@@ -44,7 +44,7 @@ module.exports = function(config) {
         function bundle() {
 
             return b.bundle().on('error', notify.onError('<%= error.message %>'))
-                .pipe(source('main.min.js'))
+                .pipe(source(config.browserify.bundleName))
                 .pipe(buffer())
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.init({ loadMaps: true })))
                 .pipe(gulpif(global.isProduction, uglify({ compress: { drop_console: true /*why??*/ } })))

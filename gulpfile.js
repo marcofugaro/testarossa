@@ -8,7 +8,8 @@ var assign = require('lodash.assign');
 var config = {
     sourceDir: './src/',
     buildDir: './build/',
-    gzip: false
+    gzip: false,
+    modernizr: true
 };
 
 assign(config, {
@@ -22,12 +23,6 @@ assign(config, {
     scripts: {
         src: config.sourceDir + 'js/**/*.js',
         dest: config.buildDir + 'js'
-    },
-
-    modernizr: {
-        enable: true,
-        looking: [config.sourceDir +'sass/**/*.scss', config.sourceDir + 'js/**/*.js'], //TODO do we really need assign?
-        tmp: config.buildDir + 'js/modernizr.js'
     },
 
     images: {
@@ -47,7 +42,9 @@ assign(config, {
     },
 
     browserify: {
-        bundleName: 'main.js',
+        src: config.sourceDir + 'js/main.js',
+        dest: config.buildDir + 'js/main.min.js',
+        bundleName: 'main.min.js',
         sourcemaps: false
     },
 
