@@ -11,5 +11,6 @@ module.exports = function(config) {
         gulp.watch(config.styles.src,  ['styles']);
         gulp.watch(config.images.src,  ['images']);
         gulp.watch(config.fonts.src,   ['fonts']);
+        
     });
 }

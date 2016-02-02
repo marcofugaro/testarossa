@@ -7,11 +7,9 @@ module.exports = function(config) {
 
     gulp.task('build', ['clean'], function(cb) {
       
-        // cb = cb || function() {};
-
         global.isProduction = true;
 
-        // runSequence(['styles', 'images', 'fonts', 'browserify'], 'gzip', cb);
-        return runSequence(['styles', 'images', 'fonts', 'browserify'], 'modernizr', 'gzip'); //TODO check if this shit works with deployment
+        runSequence(['styles', 'images', 'fonts', 'browserify'], 'modernizr', 'gzip', cb);
+        
     });
 }
