@@ -9,7 +9,8 @@ var config = {
     sourceDir: './src/',
     buildDir: './build/',
     gzip: false,
-    modernizr: true
+    modernizr: true,
+    autoreload: true
 };
 
 assign(config, {
@@ -33,12 +34,6 @@ assign(config, {
     fonts: {
         src: [config.sourceDir + 'fonts/**/*'],
         dest: config.buildDir + 'fonts'
-    },
-
-    browserSync: {
-        browserPort: 3000,
-        UIPort: 3001,
-        autoreload: true
     },
 
     browserify: {

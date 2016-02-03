@@ -4,18 +4,16 @@ module.exports = function(config) {
 
     var gulp = require('gulp');
     var browserSync = require('browser-sync');
+    var connect = require('gulp-connect-php');
 
     gulp.task('browser-sync', function() {
         
         connect.server({ 
                 base: config.buildDir,
                 stdio: 'ignore'
-            }, function (){
+            }, function () {
             browserSync({
-                proxy: '127.0.0.1:' + config.browserSync.browserPort,
-                ui: {
-                    port: config.browserSync.UIPort
-                }, 
+                proxy: '127.0.0.1:3000'
                 // logLevel: 'silent', 
                 // logConnections: false,
                 // notify: false
@@ -23,7 +21,7 @@ module.exports = function(config) {
         });
 
         //TODO test this if better in bs.stream()
-        // if(!config.browserSync.autoreload) return;
+        // if(!config.autoreload) return;
 
         // gulp.watch(['public/**/*.{php,html,js,css}']).on('change', function () {
         //     browserSync.reload();
