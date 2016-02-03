@@ -15,6 +15,6 @@ module.exports = function(config) {
             .pipe(changed(config.images.dest))
             .pipe(gulpif(global.isProduction, imagemin({ use: [pngquant()] }))) // TODO test this or the default png optimizer
             .pipe(gulp.dest(config.images.dest))
-            .pipe(gulpif(config.browserSync.autoreload, browserSync.stream()));
+            .pipe(gulpif(config.autoreload, browserSync.stream()));
     });
 }

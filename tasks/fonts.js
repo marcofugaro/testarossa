@@ -12,6 +12,6 @@ module.exports = function(config) {
       return gulp.src(config.fonts.src)
         .pipe(changed(config.fonts.dest))
         .pipe(gulp.dest(config.fonts.dest))
-        .pipe(gulpif(config.browserSync.autoreload, browserSync.stream()));
+        .pipe(gulpif(config.autoreload, browserSync.stream()));
     });
 }

@@ -22,6 +22,6 @@ module.exports = function(config) {
             .pipe(rename({ suffix: '.min' }))
             .pipe(gulpif(config.styles.sourcemaps, sourcemaps.write()))
             .pipe(gulp.dest(config.styles.dest))
-            .pipe(gulpif(config.browserSync.autoreload, browserSync.stream()));
+            .pipe(gulpif(config.autoreload, browserSync.stream()));
     });
 }

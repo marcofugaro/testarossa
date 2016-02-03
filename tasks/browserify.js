@@ -50,7 +50,7 @@ module.exports = function(config) {
                 .pipe(gulpif(global.isProduction, uglify()))
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.write('./')))
                 .pipe(gulp.dest(config.scripts.dest))
-                .pipe(gulpif(config.browserSync.autoreload, browserSync.stream()));
+                .pipe(gulpif(config.autoreload, browserSync.stream()));
         }
 
         return bundle();
