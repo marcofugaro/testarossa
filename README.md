@@ -17,7 +17,6 @@ In sass the packages are required with --- and in js browserify handles dependen
 
 
 #### TODO
-- markup task
 - require in css
 - es6 in browserify
 - gulp4 branch

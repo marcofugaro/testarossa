@@ -14,16 +14,9 @@ module.exports = function(config) {
             }, function() {
             browserSync({
                 proxy: '127.0.0.1:8000',
-                logLevel: 'silent', 
+                logLevel: 'silent',
                 notify: false
             });
         });
-
-        //TODO test this if better in bs.stream()
-        // if(!config.autoreload) return;
-
-        // gulp.watch(['public/**/*.{php,html,js,css}']).on('change', function () {
-        //     browserSync.reload();
-        // });
     });
 }
