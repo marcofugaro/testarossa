@@ -15,6 +15,11 @@ var config = {
 
 assign(config, {
 
+    markup: {
+        src: [config.sourceDir + '*.*', config.sourceDir + 'partials/**/*'],
+        dest: config.buildDir,
+    },
+
     styles: {
         src: config.sourceDir + 'sass/**/*.scss',
         dest: config.buildDir + 'css',

@@ -9,7 +9,7 @@ module.exports = function(config) {
       
         global.isProduction = true;
 
-        runSequence(['styles', 'images', 'fonts', 'browserify'], 'modernizr', 'gzip', cb);
+        runSequence(['markup', 'styles', 'browserify', 'images', 'fonts'], 'modernizr', 'gzip', cb);
         
     });
 }

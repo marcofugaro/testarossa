@@ -11,7 +11,7 @@ module.exports = function(config) {
 
     gulp.task('images', function() {
 
-        return gulp.src(config.images.src)
+        return gulp.src(config.images.src, { base: config.sourceDir })
             .pipe(changed(config.images.dest))
             .pipe(gulpif(global.isProduction, imagemin({ use: [pngquant()] }))) // TODO test this or the default png optimizer
             .pipe(gulp.dest(config.images.dest))
