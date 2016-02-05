@@ -11,12 +11,11 @@ module.exports = function(config) {
         connect.server({ 
                 base: config.buildDir,
                 stdio: 'ignore'
-            }, function () {
+            }, function() {
             browserSync({
-                proxy: '127.0.0.1:3000'
-                // logLevel: 'silent', 
-                // logConnections: false,
-                // notify: false
+                proxy: '127.0.0.1:8000',
+                logLevel: 'silent', 
+                notify: false
             });
         });
 
