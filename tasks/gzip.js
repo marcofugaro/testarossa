@@ -10,7 +10,7 @@ module.exports = function(config) {
         if(!config.gzip) return;
 
         return gulp.src(config.buildDir + '**/*.{html,php,xml,json,css,js,js.map,css.map}', { base: config.sourceDir })
-            .pipe(gzip())
+            .pipe(gzip()) //TODO .gz extension or not?
             .pipe(gulp.dest(config.buildDir));
     });
 }

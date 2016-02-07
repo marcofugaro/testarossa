@@ -9,10 +9,10 @@ var config = {
     sourceDir: './src/',
     buildDir: './build/',
     gzip: false,
-    modernizr: false,
+    modernizr: true,
     autoreload: true,
-    pagespeed: false,
-    domain: 'marcofugaro.it'
+    pagespeed: true,
+    domain: 'example.com'
 };
 
 assign(config, {
