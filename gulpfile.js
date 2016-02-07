@@ -9,8 +9,10 @@ var config = {
     sourceDir: './src/',
     buildDir: './build/',
     gzip: false,
-    modernizr: true,
-    autoreload: true
+    modernizr: false,
+    autoreload: true,
+    pagespeed: false,
+    domain: 'marcofugaro.it'
 };
 
 assign(config, {
