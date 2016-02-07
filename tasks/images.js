@@ -13,7 +13,11 @@ module.exports = function(config) {
 
         return gulp.src(config.images.src, { base: config.sourceDir })
             .pipe(changed(config.images.dest))
-            .pipe(gulpif(global.isProduction, imagemin({ use: [pngquant()] }))) // TODO test this or the default png optimizer
+            .pipe(gulpif(global.isProduction, imagemin({ 
+                use: [pngquant()],  // TODO test this or the default png optimizer, and ADD svg optimizer
+                progressive: true,
+                interlaced: true
+            })))
             .pipe(gulp.dest(config.images.dest))
             .pipe(gulpif(config.autoreload, browserSync.stream()));
     });

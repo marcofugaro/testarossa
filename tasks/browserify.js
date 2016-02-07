@@ -14,7 +14,7 @@ module.exports = function(config) {
     var browserSync = require('browser-sync');
 
     gulp.task('browserify', function() {
-      
+
         var b = browserify({
             entries: [config.browserify.src],
             debug: config.browserify.sourcemaps,
@@ -23,10 +23,8 @@ module.exports = function(config) {
             fullPaths: !global.isProduction //why?? try to remove these three http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
         });
 
-
         if ( !global.isProduction ) {
             b = watchify(b);
-
             b.on('update', bundle);
         }
 
