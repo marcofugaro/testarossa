@@ -31,21 +31,21 @@ assign(config, {
         dest: config.buildDir + 'js'
     },
 
+    browserify: {
+        src: config.sourceDir + 'js/main.js',
+        dest: config.buildDir + 'js/main.min.js',
+        bundleName: 'main.min.js',
+        sourcemaps: true
+    },
+
     images: {
         src: config.sourceDir + 'images/**/*',
         dest: config.buildDir + 'images'
     },
 
     fonts: {
-        src: [config.sourceDir + 'fonts/**/*'],
+        src: config.sourceDir + 'fonts/**/*',
         dest: config.buildDir + 'fonts'
-    },
-
-    browserify: {
-        src: config.sourceDir + 'js/main.js',
-        dest: config.buildDir + 'js/main.min.js',
-        bundleName: 'main.min.js',
-        sourcemaps: false
     },
 
 });

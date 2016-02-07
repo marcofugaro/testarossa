@@ -9,7 +9,7 @@ module.exports = function(config) {
 
         if(!config.gzip) return;
 
-        return gulp.src([config.buildDir + '**/*.{html,php,xml,json,css,js,js.map,css.map}', '!**/modernizr.js'])
+        return gulp.src(config.buildDir + '**/*.{html,php,xml,json,css,js,js.map,css.map}', { base: config.sourceDir })
             .pipe(gzip())
             .pipe(gulp.dest(config.buildDir));
     });
