@@ -41,7 +41,8 @@ module.exports = function(config) {
 
         function bundle() {
 
-            return b.bundle().on('error', notify.onError('<%= error.message %>'))
+            return b.bundle()
+                .on('error', notify.onError('<%= error.message %>'))
                 .pipe(source(config.browserify.bundleName))
                 .pipe(buffer())
                 .pipe(gulpif(config.browserify.sourcemaps, sourcemaps.init({ loadMaps: true })))

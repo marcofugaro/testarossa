@@ -1,11 +1,10 @@
 //SMACSS file architecture - https://smacss.com/
 
-//@import 'vendor/bootstrap'; //TODO how to handle vendor scss? http://stackoverflow.com/questions/28283652/importing-sass-through-npm
-//@import 'vendor/fontawesome';
-// @import 'vendor/normalize';
-// @import 'vendor/susy';
+// @import 'font-awesome';
+// @import 'normalize-css';
+@import 'susy';
 
-@import 'helpers/**/*.scss';
+@import 'helpers/*.scss';
 
 @import 'vars';
 @import 'base';

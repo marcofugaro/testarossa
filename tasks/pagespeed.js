@@ -10,7 +10,7 @@ module.exports = function(config) {
         if(!config.pagespeed) return;
 
         return pagespeed(config.domain, {
-            strategy: 'mobile',
+            strategy: 'mobile'
         });
     });
 }

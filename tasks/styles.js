@@ -5,19 +5,25 @@ module.exports = function(config) {
     var gulp = require('gulp');
     var gulpif = require('gulp-if');
     var sourcemaps = require('gulp-sourcemaps');
-    var sassGlob = require('gulp-sass-glob');
     var sass = require('gulp-sass');
     var notify = require('gulp-notify');
     var rename = require('gulp-rename');
     var browserSync = require('browser-sync');
     var autoprefixer = require('gulp-autoprefixer');
+    // var sassGlob = require('gulp-sass-glob');
+    var moduleImporter = require('sass-module-importer');
+    var globImporter = require('sass-glob-importer');
 
     gulp.task('styles', function () {
 
         return gulp.src(config.styles.src)
             .pipe(gulpif(config.styles.sourcemaps, sourcemaps.init()))
-            .pipe(sassGlob())
-            .pipe(sass({ outputStyle: 'compressed' })).on('error', notify.onError('<%= error.message %>'))
+            // .pipe(sassGlob())
+            .pipe(sass({ 
+                outputStyle: 'extended',
+                importer: [moduleImporter(), globImporter()]
+            }))
+            .on('error', notify.onError('<%= error.message %>'))
             .pipe(autoprefixer('last 2 versions', '> 1%', 'ie 9'))
             .pipe(rename({ suffix: '.min' }))
             .pipe(gulpif(config.styles.sourcemaps, sourcemaps.write()))

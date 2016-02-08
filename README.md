@@ -25,10 +25,11 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 - gulp4 branch
 - gulp append version
 - add tests?
-- rsync or git or nothing? in deploy task
+- rsync or git or nothing? in upload task
 - https://github.com/imagemin/imagemin-webp
 - better console logging
 - File size reporting? https://github.com/vigetlabs/gulp-starter
+- .eslintrc
 
 
 ##Installation
