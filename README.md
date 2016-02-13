@@ -1,5 +1,5 @@
 # gulp-frontend-boilerplate - WORK IN PROGRESS
-An up-tp-date gulp boilerplate for static front-end websites.
+An up-to-date gulp boilerplate for static front-end websites.
 
 It uses npm as a package manager for both sass and js. For this reason it is recommended using `npm@3` since it has flat dependency management.
 In sass the packages are required with --- and in js browserify handles dependencies.
@@ -29,6 +29,7 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 - https://github.com/imagemin/imagemin-webp
 - better console logging
 - File size reporting? https://github.com/vigetlabs/gulp-starter
+- add critical with flag
 
 
 ##Installation
