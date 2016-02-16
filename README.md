@@ -20,6 +20,7 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 #### TODO
 - make sourcemaps external
 - require in css
+- http://sass-guidelin.es/#the-7-1-pattern in css?
 - es6 in browserify
 - browserify multiple bundles
 - gulp4 branch
