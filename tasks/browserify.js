@@ -14,7 +14,7 @@ import config from './../gulpfile.babel';
 
 gulp.task('browserify', function() {
 
-    const b = browserify({
+    let b = browserify({
         entries: [config.browserify.src],
         debug: config.browserify.sourcemaps,
         cache: {},

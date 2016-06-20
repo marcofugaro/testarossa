@@ -4,7 +4,7 @@ import requireDir from 'require-dir';
 import runSequence from 'run-sequence';
 
 
-const sourceDir = './app/';
+const sourceDir = './src/';
 const buildDir = './build/';
 
 export default {
