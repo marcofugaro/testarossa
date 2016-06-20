@@ -1,16 +1,14 @@
-module.exports = function(config) { 
+import gulp from 'gulp';
+import gzip from 'gulp-gzip';
 
-    'use strict';
+import config from './../gulpfile.babel';
 
-    var gulp = require('gulp');
-    var gzip = require('gulp-gzip');
 
-    gulp.task('gzip', function() {
+gulp.task('gzip', function() {
 
-        if(!config.gzip) return;
+    if(!config.gzip) return;
 
-        return gulp.src(config.buildDir + '**/*.{html,php,xml,json,css,js,js.map,css.map}', { base: config.sourceDir })
-            .pipe(gzip()) //TODO .gz extension or not?
-            .pipe(gulp.dest(config.buildDir));
-    });
-}
+    return gulp.src(config.buildDir + '**/*.{html,php,xml,json,css,js,js.map,css.map}', { base: config.sourceDir })
+        .pipe(gzip()) //TODO .gz extension or not?
+        .pipe(gulp.dest(config.buildDir));
+});

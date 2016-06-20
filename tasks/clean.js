@@ -1,11 +1,9 @@
-module.exports = function(config) { 
-    
-    'use strict';
+import gulp from 'gulp';
+import del from 'del';
 
-    var gulp = require('gulp');
-    var del = require('del');
+import config from './../gulpfile.babel';
 
-    gulp.task('clean', function() {
-        return del([config.buildDir]);
-    });
-}
+
+gulp.task('clean', function() {
+    return del([config.buildDir]);
+});

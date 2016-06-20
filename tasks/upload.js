@@ -1,12 +1,10 @@
-module.exports = function(config) { 
+import gulp from 'gulp';
 
-    'use strict';
+import config from './../gulpfile.babel';
 
-    var gulp = require('gulp');
 
-    gulp.task('upload', function() {
-        
-        //TODO add upload logic here
+gulp.task('upload', function() {
+    
+    //TODO add upload logic here
 
-    });
-}
+});

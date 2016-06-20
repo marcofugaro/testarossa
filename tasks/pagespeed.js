@@ -1,16 +1,14 @@
-module.exports = function(config) { 
+import gulp from 'gulp';
+import pagespeed from 'psi';
 
-    'use strict';
+import config from './../gulpfile.babel';
 
-    var gulp = require('gulp');
-    var pagespeed = require('psi').output;
 
-    gulp.task('pagespeed', function() {
+gulp.task('pagespeed', function() {
 
-        if(!config.pagespeed) return;
+    if(!config.pagespeed) return;
 
-        return pagespeed(config.domain, {
-            strategy: 'mobile'
-        });
+    return pagespeed.output(config.domain, {
+        strategy: 'mobile'
     });
-}
+});
