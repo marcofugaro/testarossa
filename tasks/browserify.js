@@ -4,6 +4,7 @@ import source from 'vinyl-source-stream';
 import sourcemaps from 'gulp-sourcemaps';
 import buffer from 'vinyl-buffer';
 import watchify from 'watchify';
+import babelify from 'babelify';
 import browserify from 'browserify';
 import notify from 'gulp-notify';
 import uglify from 'gulp-uglify';
@@ -17,9 +18,9 @@ gulp.task('browserify', function() {
     let b = browserify({
         entries: [config.browserify.src],
         debug: config.browserify.sourcemaps,
-        cache: {},
-        packageCache: {},
-        fullPaths: !global.isProduction //why?? try to remove these three http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
+        cache: {}, // required for watchify
+        packageCache: {}, // required for watchify
+        fullPaths: !global.isProduction // required to be true only for watchify
     });
 
     if ( !global.isProduction ) {
@@ -28,14 +29,13 @@ gulp.task('browserify', function() {
     }
 
 
-    const transforms = ['brfs'];
+    const transforms = [
+        { name: babelify, options: { presets: ['es2015', 'stage-1'] } }
+    ];
 
     transforms.forEach(function(transform) {
-        b.transform(transform); //TODO test it empty
+        b.transform(transform.name, transform.options); //TODO test it empty
     });
-
-
-    // const sourceMapLocation = global.isProduction ? './' : ''; //TODo test if this works in local
 
 
     function bundle() {
