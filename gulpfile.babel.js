@@ -14,6 +14,7 @@ export default {
     gzip: false,
     modernizr: true,
     autoreload: true,
+    openBrowser: true,
     pagespeed: true,
     domain: 'example.com',
 
