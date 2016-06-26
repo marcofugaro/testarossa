@@ -21,12 +21,12 @@ gulp.task('styles', function () {
         .pipe(gulpif(config.styles.sourcemaps, sourcemaps.init()))
         .pipe(sass({ 
             outputStyle,
-            importer: [moduleImporter, globImporter]
+            importer: [globImporter(), moduleImporter()]
         }))
         .on('error', notify.onError('<%= error.message %>'))
         .pipe(autoprefixer({ browsers: ['last 2 versions', '> 1%', 'ie 9'] }))
         .pipe(rename({ suffix: '.min' }))
-        .pipe(gulpif(config.styles.sourcemaps, sourcemaps.write()))
+        .pipe(gulpif(config.styles.sourcemaps, sourcemaps.write('./')))
         .pipe(gulp.dest(config.styles.dest))
         .pipe(gulpif(config.autoreload, browserSync.stream()));
 });
