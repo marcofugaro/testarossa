@@ -1,15 +1,17 @@
-.center {
+%center {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.centerX {
+
+%centerX {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
-.centerY {
+
+%centerY {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
