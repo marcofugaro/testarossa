@@ -13,7 +13,6 @@ gulp.task('browser-sync', function() {
         }, function() {
         browserSync({
             proxy: '127.0.0.1:8000',
-            logLevel: 'silent',
             notify: false,
             open: config.openBrowser
         });
