@@ -8,7 +8,7 @@
     "url": "https://github.com/marcofugaro/gulp-frontend-boilerplate"
   },
   "scripts": {
-    "test": "test"
+    "start": "gulp"
   },
   "keywords": [
     "gulp",
