@@ -1,5 +1,4 @@
 import gulp from 'gulp';
-import fs from 'fs';
 import requireDir from 'require-dir';
 import runSequence from 'run-sequence';
 
@@ -14,7 +13,7 @@ export default {
     gzip: false,
     modernizr: true,
     autoreload: true,
-    openBrowser: true,
+    openBrowser: false,
     pagespeed: true,
     domain: 'example.com',
 
