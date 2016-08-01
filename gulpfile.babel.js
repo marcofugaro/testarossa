@@ -26,14 +26,10 @@ export default {
     },
 
     scripts: {
-        src: sourceDir + 'js/**/*.js',
-        dest: buildDir + 'js'
-    },
-
-    browserify: {
         src: sourceDir + 'js/main.js',
-        dest: buildDir + 'js/main.min.js',
-        bundleName: 'main.min.js',
+        dest: buildDir + 'js',
+        bundleName: 'main.js',
+        watch: sourceDir + 'js/**/*.js',
         sourcemaps: true
     },
 

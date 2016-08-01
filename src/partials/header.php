@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <meta name="copyright" content="&copy;">
     
-    <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="images/favicon.png" type="image/png">
 
 
