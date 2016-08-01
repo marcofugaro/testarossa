@@ -5,5 +5,5 @@ import config from './../gulpfile.babel';
 
 
 gulp.task('clean', function() {
-    return del([config.buildDir]);
+  return del([config.buildDir]);
 });

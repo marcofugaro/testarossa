@@ -15,43 +15,42 @@ import config from './../gulpfile.babel';
 
 
 gulp.task('browserify', function() {
+  let b = browserify({
+    entries: [config.scripts.src],
+    debug: config.scripts.sourcemaps,
+    cache: {}, // required for watchify
+    packageCache: {}, // required for watchify
+    fullPaths: !global.isProduction // required to be true only for watchify
+  });
 
-    let b = browserify({
-        entries: [config.scripts.src],
-        debug: config.scripts.sourcemaps,
-        cache: {}, // required for watchify
-        packageCache: {}, // required for watchify
-        fullPaths: !global.isProduction // required to be true only for watchify
-    });
-
-    if ( !global.isProduction ) {
-        b = watchify(b);
-        b.on('update', bundle);
-    }
-
-
-    const transforms = [
-        { name: babelify, options: { presets: ['es2015', 'stage-1'] } },
-        { name: browserifyShim, options: { global: true } }
-    ];
-
-    transforms.forEach(function(transform) {
-        b.transform(transform.name, transform.options); //TODO test it empty
-    });
+  if ( !global.isProduction ) {
+    b = watchify(b);
+    b.on('update', bundle);
+  }
 
 
-    function bundle() {
+  const transforms = [
+    { name: babelify, options: { presets: ['es2015', 'stage-1'] } },
+    { name: browserifyShim, options: { global: true } }
+  ];
 
-        return b.bundle()
-            .on('error', notify.onError('<%= error.message %>'))
-            .pipe(source(config.scripts.bundleName))
-            .pipe(buffer())
-            .pipe(gulpif(config.scripts.sourcemaps, sourcemaps.init({ loadMaps: true })))
-            .pipe(gulpif(global.isProduction, uglify()))
-            .pipe(gulpif(config.scripts.sourcemaps, sourcemaps.write('./')))
-            .pipe(gulp.dest(config.scripts.dest))
-            .pipe(gulpif(config.autoreload, browserSync.stream()));
-    }
+  transforms.forEach(function(transform) {
+    b.transform(transform.name, transform.options); //TODO test it empty
+  });
 
-    return bundle();
+
+  function bundle() {
+
+    return b.bundle()
+      .on('error', notify.onError('<%= error.message %>'))
+      .pipe(source(config.scripts.bundleName))
+      .pipe(buffer())
+      .pipe(gulpif(config.scripts.sourcemaps, sourcemaps.init({ loadMaps: true })))
+      .pipe(gulpif(global.isProduction, uglify()))
+      .pipe(gulpif(config.scripts.sourcemaps, sourcemaps.write('./')))
+      .pipe(gulp.dest(config.scripts.dest))
+      .pipe(gulpif(config.autoreload, browserSync.stream()));
+  }
+
+  return bundle();
 });
