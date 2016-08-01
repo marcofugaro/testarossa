@@ -20,7 +20,8 @@ gulp.task('styles', function () {
     .pipe(sassGlob())
     .pipe(sass({ 
       outputStyle,
-      importer: moduleImporter()
+      importer: moduleImporter(),
+      includePaths: 'node_modules/'
     }))
     .on('error', notify.onError('<%= error.message %>'))
     .pipe(autoprefixer({ browsers: ['last 2 versions', '> 1%', 'ie 9'] }))

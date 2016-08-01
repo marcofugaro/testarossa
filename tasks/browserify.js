@@ -17,6 +17,7 @@ import config from './../gulpfile.babel';
 gulp.task('browserify', function() {
   let b = browserify({
     entries: [config.scripts.src],
+    paths: [config.sourceDir, 'node_modules/'],
     debug: config.scripts.sourcemaps,
     cache: {}, // required for watchify
     packageCache: {}, // required for watchify
