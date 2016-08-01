@@ -5,6 +5,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import buffer from 'vinyl-buffer';
 import watchify from 'watchify';
 import babelify from 'babelify';
+import browserifyShim from 'browserify-shim';
 import browserify from 'browserify';
 import notify from 'gulp-notify';
 import uglify from 'gulp-uglify';
@@ -30,7 +31,8 @@ gulp.task('browserify', function() {
 
 
     const transforms = [
-        { name: babelify, options: { presets: ['es2015', 'stage-1'] } }
+        { name: babelify, options: { presets: ['es2015', 'stage-1'] } },
+        { name: browserifyShim, options: { global: true } }
     ];
 
     transforms.forEach(function(transform) {
