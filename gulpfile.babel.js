@@ -10,12 +10,9 @@ export default {
 
     sourceDir,
     buildDir,
-    gzip: false,
     modernizr: true,
     autoreload: true,
-    openBrowser: false,
-    pagespeed: true,
-    domain: 'example.com',
+    openBrowser: true,
 
     markup: {
         src: [sourceDir + '*.*', sourceDir + 'partials/**/*'],
@@ -62,11 +59,7 @@ gulp.task('dev', ['clean'], function(cb) {
 
 gulp.task('build', ['clean'], function(cb) {
     global.isProduction = true;
-    runSequence(['markup', 'styles', 'browserify', 'images', 'fonts'], 'modernizr', 'gzip', cb);
-});
-
-gulp.task('deploy', ['build'], function(cb) {
-    runSequence('upload', 'pagespeed', cb);
+    runSequence(['markup', 'styles', 'browserify', 'images', 'fonts'], 'modernizr', cb);
 });
 
 gulp.task('default', ['dev']);
