@@ -17,10 +17,9 @@ In sass the packages are required with --- and in js browserify handles dependen
 The  gulpfile.js contains the main configuration object, and all other tasks are in the `tasks` folder which contains:
 
 - [Browserify](http://browserify.org/) & [Watchify](https://github.com/substack/watchify) and Babelilfy for ES6 and sourcemapping
-- [SASS](http://sass-lang.com/) with [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer)), compiled with LIBSASS, SMACSS file architecture and sourcemapping
+- [SASS](http://sass-lang.com/) with [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer)), compiled with LIBSASS, SMACSS, ITCSS, BEM and sourcemapping
 - [BrowserSync](http://browsersync.io)
 - ESLINT
-- Gzip compression
 - Auto Modernizr
 - Image and SVG minification, WebP
 - Cache control

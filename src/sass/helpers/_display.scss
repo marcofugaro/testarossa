@@ -1,0 +1,11 @@
+.hidden { display: none; }
+
+.invisible { visibility: hidden; }
+
+.no-outline:focus, .no-outline:active { outline: none; }
+.no-outline::-moz-focus-inner { border: 0; }
+
+.no-link {
+  color: inherit;
+  text-decoration: none;
+}
