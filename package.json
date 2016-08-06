@@ -39,6 +39,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-connect-php": "0.0.7",
     "gulp-eslint": "^3.0.1",
+    "gulp-eslint-if-fixed": "^1.0.0",
     "gulp-if": "^2.0.1",
     "gulp-imagemin": "^3.0.1",
     "gulp-modernizr": "0.0.0",

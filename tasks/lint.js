@@ -1,14 +1,17 @@
 import gulp from 'gulp';
+import gulpif from 'gulp-if';
 import eslint from 'gulp-eslint';
 import notify from 'gulp-notify';
+import eslintIfFixed from 'gulp-eslint-if-fixed';
 
 import config from './../gulpfile.babel';
 
 
 gulp.task('lint', () => {
-  return gulp.src(config.scripts.watch)
-    .pipe(eslint())
+  return gulp.src(config.scripts.src)
+    .pipe(eslint({ fix: config.eslintAutofix }))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
-    .on('error', notify.onError('<%= error.message %>'));
+    .on('error', notify.onError('<%= error.message %>'))
+    .pipe(gulpif(config.eslintAutofix, eslintIfFixed(config.scripts.srcDir)));
 });

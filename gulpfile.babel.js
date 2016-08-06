@@ -11,6 +11,7 @@ export default {
   sourceDir,
   buildDir,
   modernizr: true,
+  eslintAutofix: false,
   autoreload: true,
   openBrowser: true,
 
@@ -26,10 +27,10 @@ export default {
   },
 
   scripts: {
-    src: `${sourceDir}/js/main.js`,
+    src: `${sourceDir}/js/**/*.js`,
     dest: `${buildDir}/js`,
+    srcDir: `${sourceDir}/js`,
     bundleName: 'main.js',
-    watch: `${sourceDir}/js/**/*.js`,
     sourcemaps: true,
   },
 

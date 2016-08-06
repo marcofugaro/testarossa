@@ -16,7 +16,7 @@ gulp.task('modernizr', () => {
       options:  ['setClasses', 'addTest', 'testProp', 'fnBind']
     }))
     .pipe(uglify())
-    .pipe(addsrc.append(config.scripts.dest + '/' + config.scripts.bundleName))
+    .pipe(addsrc.append(`${config.scripts.dest}/${config.scripts.bundleName}`))
     .pipe(concat(config.scripts.bundleName))
     .pipe(gulp.dest(config.scripts.dest));
 });
