@@ -14,17 +14,17 @@ import browserSync from 'browser-sync';
 import config from './../gulpfile.babel';
 
 
-gulp.task('browserify', function() {
+gulp.task('browserify', () => {
   let b = browserify({
     entries: [config.scripts.src],
     paths: [config.sourceDir, 'node_modules/'],
     debug: config.scripts.sourcemaps,
     cache: {}, // required for watchify
     packageCache: {}, // required for watchify
-    fullPaths: !global.isProduction // required to be true only for watchify
+    fullPaths: !global.isProduction, // required to be true only for watchify
   });
 
-  if ( !global.isProduction ) {
+  if (!global.isProduction) {
     b = watchify(b);
     b.on('update', bundle);
   }
@@ -32,16 +32,15 @@ gulp.task('browserify', function() {
 
   const transforms = [
     { name: babelify, options: { presets: ['es2015', 'stage-1'] } },
-    { name: browserifyShim, options: { global: true } }
+    { name: browserifyShim, options: { global: true } },
   ];
 
-  transforms.forEach(function(transform) {
-    b.transform(transform.name, transform.options); //TODO test it empty
+  transforms.forEach((transform) => {
+    b.transform(transform.name, transform.options); // TODO test it empty
   });
 
 
   function bundle() {
-
     return b.bundle()
       .on('error', notify.onError('<%= error.message %>'))
       .pipe(source(config.scripts.bundleName))

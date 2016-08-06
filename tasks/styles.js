@@ -11,17 +11,17 @@ import moduleImporter from 'sass-module-importer';
 import config from './../gulpfile.babel';
 
 
-gulp.task('styles', function () {
+gulp.task('styles', () => {
   // TODO set it 'compressed' when this issue is solved https://github.com/sass/node-sass/issues/957
   const outputStyle = global.isProduction ? 'compressed' : 'expanded';
 
   return gulp.src(config.styles.src)
     .pipe(gulpif(config.styles.sourcemaps, sourcemaps.init()))
     .pipe(sassGlob())
-    .pipe(sass({ 
+    .pipe(sass({
       outputStyle,
       importer: moduleImporter(),
-      includePaths: 'node_modules/'
+      includePaths: 'node_modules/',
     }))
     .on('error', notify.onError('<%= error.message %>'))
     .pipe(autoprefixer({ browsers: ['last 2 versions', '> 1%', 'ie 9'] }))

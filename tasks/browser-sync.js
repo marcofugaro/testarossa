@@ -5,15 +5,15 @@ import connect from 'gulp-connect-php';
 import config from './../gulpfile.babel';
 
 
-gulp.task('browser-sync', function() {
-  connect.server({ 
-      base: config.buildDir,
-      stdio: 'ignore'
-    }, function() {
+gulp.task('browser-sync', () => {
+  connect.server({
+    base: config.buildDir,
+    stdio: 'ignore',
+  }, () => {
     browserSync({
       proxy: '127.0.0.1:8000',
       notify: false,
-      open: config.openBrowser
+      open: config.openBrowser,
     });
   });
 });

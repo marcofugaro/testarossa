@@ -4,6 +4,6 @@ import del from 'del';
 import config from './../gulpfile.babel';
 
 
-gulp.task('clean', function() {
+gulp.task('clean', () => {
   return del([config.buildDir]);
 });

@@ -5,8 +5,8 @@ import notify from 'gulp-notify';
 import config from './../gulpfile.babel';
 
 
-gulp.task('lint', function() {
-  return gulp.src(config.scripts.src)
+gulp.task('lint', () => {
+  return gulp.src(config.scripts.watch)
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())

@@ -3,10 +3,10 @@ import gulp from 'gulp';
 import config from './../gulpfile.babel';
 
 
-gulp.task('watch', ['browser-sync'], function() {
-  gulp.watch(config.markup.src,  ['markup']);
-  gulp.watch(config.styles.src,  ['styles']);
+gulp.task('watch', ['browser-sync'], () => {
+  gulp.watch(config.markup.src, ['markup']);
+  gulp.watch(config.styles.src, ['styles']);
   gulp.watch(config.scripts.watch, ['lint']);
-  gulp.watch(config.images.src,  ['images']);
-  gulp.watch(config.fonts.src,   ['fonts']);
+  gulp.watch(config.images.src, ['images']);
+  gulp.watch(config.fonts.src, ['fonts']);
 });
