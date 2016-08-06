@@ -41,6 +41,7 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 - File size reporting? https://github.com/vigetlabs/gulp-starter
 - .eslintrc
 - add critical with flag
+- add errors to notify messages `(title: '<%= error.name %>', message: '<%= error.message %>')`
 
 
 ##Installation

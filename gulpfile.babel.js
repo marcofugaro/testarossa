@@ -50,7 +50,7 @@ const tasks = requireDir('./tasks');
 
 gulp.task('dev', ['clean'], function(cb) {
   global.isProduction = false;
-  runSequence(['markup', 'styles', 'browserify', 'images', 'fonts'], 'watch', cb);
+  runSequence(['markup', 'styles', 'lint', 'browserify', 'images', 'fonts'], 'watch', cb);
 });
 
 gulp.task('build', ['clean'], function(cb) {
