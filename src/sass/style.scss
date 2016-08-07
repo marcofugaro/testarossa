@@ -1,15 +1,15 @@
-@import 'variables/**/*.scss';
-@import 'mixins/**/*.scss';
+@import 'variables/*';
+@import 'mixins/*';
 
 @import 'font-awesome';
 @import 'normalize-css';
 @import 'susy';
 
-@import 'base/**/*.scss';
+@import 'base/*';
 
-@import 'layout/**/*.scss';
-@import 'components/**/*.scss';
+@import 'layout/*';
+@import 'components/*';
 
-@import 'helpers/**/*.scss';
+@import 'helpers/*';
 
 @import 'shame';
