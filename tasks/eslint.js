@@ -7,7 +7,7 @@ import eslintIfFixed from 'gulp-eslint-if-fixed';
 import config from './../gulpfile.babel';
 
 
-gulp.task('lint', () => {
+gulp.task('eslint', () => {
   return gulp.src(config.scripts.src)
     .pipe(eslint({ fix: config.eslintAutofix }))
     .pipe(eslint.format())

@@ -52,12 +52,12 @@ requireDir('./tasks');
 
 gulp.task('dev', ['clean'], (cb) => {
   global.isProduction = false;
-  runSequence(['markup', 'stylelint', 'styles', 'lint', 'browserify', 'images', 'fonts'], 'watch', cb);
+  runSequence(['markup', 'stylelint', 'styles', 'eslint', 'browserify', 'images', 'fonts'], 'watch', cb);
 });
 
 gulp.task('build', ['clean'], (cb) => {
   global.isProduction = true;
-  runSequence(['markup', 'styles', 'browserify', 'images', 'fonts'], 'modernizr', cb);
+  runSequence(['markup', 'stylelint', 'styles', 'eslint', 'browserify', 'images', 'fonts'], 'modernizr', cb);
 });
 
 gulp.task('default', ['dev']);
