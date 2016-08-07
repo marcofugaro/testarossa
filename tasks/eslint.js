@@ -8,10 +8,13 @@ import config from './../gulpfile.babel';
 
 
 gulp.task('eslint', () => {
+  if (!config.scripts.lint)
+    return;
+
   return gulp.src(config.scripts.src)
-    .pipe(eslint({ fix: config.eslintAutofix }))
+    .pipe(eslint({ fix: config.scripts.lintAutofix }))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .on('error', notify.onError('<%= error.message %>'))
-    .pipe(gulpif(config.eslintAutofix, eslintIfFixed(config.scripts.srcDir)));
+    .pipe(gulpif(config.scripts.lintAutofix, eslintIfFixed(config.scripts.srcDir)));
 });

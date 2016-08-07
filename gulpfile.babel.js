@@ -11,7 +11,6 @@ export default {
   sourceDir,
   buildDir,
   modernizr: true,
-  eslintAutofix: false,
   autoreload: true,
   openBrowser: true,
 
@@ -24,6 +23,7 @@ export default {
     src: `${sourceDir}/sass/**/*.scss`,
     dest: `${buildDir}/css`,
     sourcemaps: true,
+    lint: true,
   },
 
   scripts: {
@@ -32,6 +32,8 @@ export default {
     srcDir: `${sourceDir}/js`,
     bundleName: 'main.js',
     sourcemaps: true,
+    lint: true,
+    lintAutofix: false,
   },
 
   images: {

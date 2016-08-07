@@ -7,6 +7,9 @@ import config from './../gulpfile.babel';
 
 
 gulp.task('stylelint', () => {
+  if (!config.styles.lint)
+    return;
+
   return gulp.src([config.styles.src, '!**/mixins/**/*'])
     .pipe(gulpStylelint({
       reporters: [
