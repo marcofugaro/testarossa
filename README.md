@@ -27,11 +27,6 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 
 
 #### TODO
-- make sourcemaps external
-- require in css
-- http://sass-guidelin.es/#the-7-1-pattern in css?
-- es6 in browserify
-- browserify multiple bundles
 - gulp4 branch
 - gulp append version
 - add tests?
@@ -39,7 +34,6 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 - https://github.com/imagemin/imagemin-webp
 - better console logging
 - File size reporting? https://github.com/vigetlabs/gulp-starter
-- .eslintrc
 - add critical with flag
 - add errors to notify messages `(title: '<%= error.name %>', message: '<%= error.message %>')`
 
@@ -51,7 +45,7 @@ npm install
 
 ###Tasks
 - gulp or gulp dev
-- gulp build (production, like compress images, gzip modernizr)
+- gulp build (production, like compress images, modernizr)
 
 You can also run `npm start` to execute gulp from the local `node_modules` forler if you haven't installed it on your local machine
 
