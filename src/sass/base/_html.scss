@@ -1,10 +1,12 @@
 html {
   color: $black;
   font-family: $primary-font;
-  -webkit-font-smoothing: antialiased;
 
   font-size: 16px;
   @media (max-width: $font-size-breakpoint) {
     font-size: 14px;
   }
+
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
