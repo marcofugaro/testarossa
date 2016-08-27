@@ -39,6 +39,7 @@ export default {
   images: {
     src: `${sourceDir}/images/**/*`,
     dest: `${buildDir}/images`,
+    webp: true,
   },
 
   fonts: {

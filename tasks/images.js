@@ -16,7 +16,7 @@ gulp.task('images', () => {
       use: [pngquant()]
     }))
     .pipe(gulp.dest(config.images.dest))
-    .pipe(webp())
-    .pipe(gulp.dest(config.images.dest))
+    .pipe(gulpif(config.images.webp, webp()))
+    .pipe(gulpif(config.images.webp, gulp.dest(config.images.dest)))
     .pipe(gulpif(config.autoreload, browserSync.stream()));
 });
