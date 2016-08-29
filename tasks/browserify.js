@@ -31,7 +31,7 @@ gulp.task('browserify', () => {
 
 
   const transforms = [
-    { name: babelify, options: { presets: ['es2015'], plugins: ['lodash'] } },
+    { name: babelify, options: { presets: ['latest'], plugins: ['lodash'] } },
     { name: browserifyShim, options: { global: true } },
   ];
 
