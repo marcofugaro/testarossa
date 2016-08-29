@@ -28,7 +28,6 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 
 #### TODO
 - gulp4 branch
-- gulp append version
 - add tests?
 - rsync or git or nothing? in upload task
 - better console logging

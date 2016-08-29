@@ -9,10 +9,10 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="copyright" content="&copy;">
-    
-    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/style.css?v=@version@" rel="stylesheet">
     <link rel="shortcut icon" href="images/favicon.png" type="image/png">
-    
+
     <meta name="theme-color" content="#000000">
 
 
