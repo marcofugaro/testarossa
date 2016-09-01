@@ -9,6 +9,7 @@ A thing that irritates me about boilerplates is that you're supposed to libe by 
 Modularize, if you don't need a thing just remove it
 Easy to customize in the main gulpfile
 Code is written as humanly understandable as possible not as all those hard to understang gulpfile globs.
+so you don't have to first decifrate the project structure if you want to modify the build pipeline
 so it doesn't feel overwhelming
 
 It uses npm as a package manager for both sass and js. For this reason it is recommended using `npm@3` since it has flat dependency management.
@@ -24,7 +25,7 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 - Image and SVG minification, WebP
 - Cache control
 
-
+- IE9+
 
 #### TODO
 - gulp4 branch
@@ -32,7 +33,6 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 - rsync or git or nothing? in upload task
 - better console logging
 - File size reporting? https://github.com/vigetlabs/gulp-starter
-- add critical with flag
 - add errors to notify messages `(title: '<%= error.name %>', message: '<%= error.message %>')`
 
 
