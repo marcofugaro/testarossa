@@ -24,6 +24,7 @@ export default {
     dest: `${buildDir}/css`,
     sourcemaps: true,
     lint: true,
+    cssnext: false,
   },
 
   scripts: {
