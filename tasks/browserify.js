@@ -21,10 +21,10 @@ gulp.task('browserify', () => {
     debug: config.scripts.sourcemaps,
     cache: {}, // required for watchify
     packageCache: {}, // required for watchify
-    fullPaths: !global.isProduction, // required to be true only for watchify
+    fullPaths: !global.IS_PRODUCTION, // required to be true only for watchify
   });
 
-  if (!global.isProduction) {
+  if (!global.IS_PRODUCTION) {
     b = watchify(b);
     b.on('update', bundle);
   }
@@ -46,7 +46,7 @@ gulp.task('browserify', () => {
       .pipe(source(config.scripts.bundleName))
       .pipe(buffer())
       .pipe(gulpif(config.scripts.sourcemaps, sourcemaps.init({ loadMaps: true })))
-      .pipe(gulpif(global.isProduction, uglify()))
+      .pipe(gulpif(global.IS_PRODUCTION, uglify()))
       .pipe(gulpif(config.scripts.sourcemaps, sourcemaps.write('./')))
       .pipe(gulp.dest(config.scripts.dest))
       .pipe(gulpif(config.autoreload, browserSync.stream()));

@@ -15,8 +15,9 @@ import config from './../gulpfile.babel';
 
 gulp.task('styles', () => {
   // TODO set it 'compressed' when this issue is solved https://github.com/sass/node-sass/issues/957
-  const outputStyle = global.isProduction ? 'compressed' : 'expanded';
+  const outputStyle = global.IS_PRODUCTION ? 'compressed' : 'expanded';
 
+  // since cssnext already contains autoprefixer, whe use one or the other
   const processor = config.styles.cssnext ? cssnext : autoprefixer;
 
   return gulp.src(config.styles.src)

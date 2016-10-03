@@ -58,7 +58,7 @@ gulp.task('dev', ['clean'], (cb) => {
   // make NODE_ENV default to development
   process.env.NODE_ENV = process.env.NODE_ENV === 'production' ? process.env.NODE_ENV : 'development';
 
-  global.isProduction = process.env.NODE_ENV === 'production';
+  global.IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
   runSequence(['markup', 'stylelint', 'styles', 'eslint', 'browserify', 'images', 'fonts'], 'watch', cb);
 });
@@ -67,7 +67,7 @@ gulp.task('build', ['clean'], (cb) => {
   // make NODE_ENV default to production
   process.env.NODE_ENV = process.env.NODE_ENV === 'development' ? process.env.NODE_ENV : 'production';
 
-  global.isProduction = process.env.NODE_ENV === 'production';
+  global.IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
   runSequence(['markup', 'stylelint', 'styles', 'eslint', 'browserify', 'images', 'fonts'], 'modernizr', cb);
 });
