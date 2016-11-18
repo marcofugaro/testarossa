@@ -31,12 +31,12 @@ gulp.task('browserify', () => {
 
 
   const transforms = [
-    { name: babelify, options: { presets: ['latest'], plugins: ['lodash'] } },
+    { name: babelify }, // options are taken from .babelrc
     { name: browserifyShim, options: { global: true } },
   ];
 
   transforms.forEach((transform) => {
-    b.transform(transform.name, transform.options); // TODO test it empty
+    b.transform(transform.name, transform.options);
   });
 
 
