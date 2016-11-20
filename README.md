@@ -12,6 +12,8 @@ Code is written as humanly understandable as possible not as all those hard to u
 so you don't have to first decifrate the project structure if you want to modify the build pipeline
 so it doesn't feel overwhelming
 
+Up to date and modern
+
 It uses npm as a package manager for both sass and js. For this reason it is recommended using `npm@3` since it has flat dependency management.
 In sass the packages are required with --- and in js browserify handles dependencies.
 
@@ -29,11 +31,13 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 
 #### TODO
 - gulp4 branch
-- add tests?
+- add tests? https://github.com/vigetlabs/gulp-starter
 - rsync or git or nothing? in upload task
-- better console logging
+- better console logging (logo and stuff)
 - File size reporting? https://github.com/vigetlabs/gulp-starter
 - add errors to notify messages `(title: '<%= error.name %>', message: '<%= error.message %>')`
+- yarn
+- DOCUMENTATIOOOOOOON
 
 
 ##Installation

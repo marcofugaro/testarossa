@@ -6,14 +6,11 @@ import config from './../gulpfile.babel';
 
 
 gulp.task('browser-sync', () => {
-  connect.server({
-    base: config.buildDir,
-    stdio: 'ignore',
-  }, () => {
-    browserSync({
-      proxy: '127.0.0.1:8000',
-      notify: false,
-      open: config.openBrowser,
-    });
+  browserSync.init({
+    server: {
+      baseDir: config.buildDir,
+    },
+    notify: false,
+    open: config.openBrowser,
   });
 });

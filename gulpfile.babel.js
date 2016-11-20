@@ -15,7 +15,7 @@ export default {
   openBrowser: true,
 
   markup: {
-    src: [`${sourceDir}/*.*`, `${sourceDir}/partials/**/*`],
+    src: `${sourceDir}/*.*`,
     dest: buildDir,
   },
 
