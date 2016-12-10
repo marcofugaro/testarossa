@@ -42,7 +42,10 @@ gulp.task('browserify', () => {
 
   function bundle() {
     return b.bundle()
-      .on('error', notify.onError('<%= error.message %>'))
+      .on('error', notify.onError({
+        title: 'Error compiling scripts!',
+        message: `\n<%= error.message.split(': ')[1].split(' (')[0] %>\non line (<%= error.loc.line %>:<%= error.loc.column %>) of /src<%= error.filename.split('/src')[1] %>\n<%= error.codeFrame %>`,
+      }))
       .pipe(source(config.scripts.bundleName))
       .pipe(buffer())
       .pipe(gulpif(config.scripts.sourcemaps, sourcemaps.init({ loadMaps: true })))

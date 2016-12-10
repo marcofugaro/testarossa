@@ -16,6 +16,9 @@ gulp.task('stylelint', () => {
         { formatter: 'string', console: true }
       ]
     }))
-    .on('error', notify.onError('<%= error.message %>'))
+    .on('error', notify.onError({
+      title: 'Error linting styles!',
+      message: '<%= error.message %>',
+    }))
     .pipe(gulpif(false, () => {})); // TODO remove this HACK made to be able to return a gulp stream when the task is called from run-sequence (see https://github.com/OverZealous/run-sequence#usage)
 });

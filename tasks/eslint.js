@@ -15,6 +15,9 @@ gulp.task('eslint', () => {
     .pipe(eslint({ fix: config.scripts.lintAutofix }))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
-    .on('error', notify.onError('<%= error.message %>'))
+    .on('error', notify.onError({
+      title: 'Error linting scripts!',
+      message: '<%= error.message %>',
+    }))
     .pipe(gulpif(config.scripts.lintAutofix, eslintIfFixed(config.scripts.srcDir)));
 });

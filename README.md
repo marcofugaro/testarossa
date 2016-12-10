@@ -34,7 +34,6 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 #### TODO
 - gulp4 branch
 - better console logging (logo and stuff)
-- add errors to notify messages `(title: '<%= error.name %>', message: '<%= error.message %>')`
 - comment very well your code (see create-react-app)
 - yarn?
 - DOCUMENTATIOOOOOOON

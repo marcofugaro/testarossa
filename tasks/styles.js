@@ -28,7 +28,10 @@ gulp.task('styles', () => {
       importer: moduleImporter(),
       includePaths: 'node_modules/',
     }))
-    .on('error', notify.onError('<%= error.message %>'))
+    .on('error', notify.onError({
+      title: 'Error compiling styles!',
+      message: '\n<%= error.messageOriginal %>\non line (<%= error.line %>:<%= error.column %>) of <%= error.relativePath %>',
+    }))
     .pipe(postcss([
       processor({ browsers: ['last 2 versions', '> 1%', 'ie 9'] })
     ]))
