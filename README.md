@@ -32,7 +32,6 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 #### TODO
 - gulp4 branch
 - add tests? https://github.com/vigetlabs/gulp-starter
-- rsync or git or nothing? in upload task
 - better console logging (logo and stuff)
 - File size reporting? https://github.com/vigetlabs/gulp-starter
 - add errors to notify messages `(title: '<%= error.name %>', message: '<%= error.message %>')`
@@ -46,8 +45,9 @@ npm install
 ```
 
 ###Tasks
-- gulp or gulp dev
-- gulp build (production, like compress images, modernizr)
+- npm start
+- npm run build (production, like compress images, modernizr)
+- NODE_ENV=development npm run build
 
 You can also run `npm start` to execute gulp from the local `node_modules` forler if you haven't installed it on your local machine
 
