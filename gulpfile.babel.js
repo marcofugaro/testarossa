@@ -76,7 +76,7 @@ gulp.task('build', ['clean'], (cb) => {
 
   global.IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
-  runSequence(['markup', 'stylelint', 'styles', 'eslint', 'browserify', 'images', 'fonts'], 'modernizr', cb);
+  runSequence(['markup', 'stylelint', 'styles', 'eslint', 'browserify', 'images', 'fonts'], 'modernizr', 'sizereport', cb);
 });
 
 gulp.task('default', ['dev']);

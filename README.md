@@ -1,6 +1,8 @@
 # gulp-frontend-boilerplate - WORK IN PROGRESS
 An up-to-date gulp boilerplate for static front-end websites.
 
+#### [DOWNLOAD](https://github.com/marcofugaro/gulp-frontend-boilerplate/archive/master.zip)
+
 Oh shit, another fucking boilerplate
 Probably you
 
@@ -31,11 +33,10 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 
 #### TODO
 - gulp4 branch
-- add tests? https://github.com/vigetlabs/gulp-starter
 - better console logging (logo and stuff)
-- File size reporting? https://github.com/vigetlabs/gulp-starter
 - add errors to notify messages `(title: '<%= error.name %>', message: '<%= error.message %>')`
-- yarn
+- comment very well your code (see create-react-app)
+- yarn?
 - DOCUMENTATIOOOOOOON
 
 
