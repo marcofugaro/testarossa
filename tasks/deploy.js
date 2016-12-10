@@ -1,8 +1,10 @@
 import gulp from 'gulp';
+import sftp from 'gulp-sftp';
 
 import config from './../gulpfile.babel';
 
 
 gulp.task('deploy', ['build'], () => {
-  // TODO add deploy logic here
+  return gulp.src(config.buildDir)
+    .pipe(sftp(config.deploy));
 });

@@ -48,6 +48,13 @@ export default {
     dest: `${buildDir}/fonts`,
   },
 
+  deploy: {
+    host: 'example.com',
+    port: 22,
+    user: 'username',
+    pass: '1234',
+  },
+
 };
 
 
