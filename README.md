@@ -36,6 +36,7 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 - better console logging (logo and stuff)
 - comment very well your code (see create-react-app)
 - yarn?
+- add .env?
 - DOCUMENTATIOOOOOOON
 
 
