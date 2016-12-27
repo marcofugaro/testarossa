@@ -3,8 +3,8 @@
 
 ### [DOWNLOAD](https://github.com/marcofugaro/testarossa/archive/master.zip)
 
-> Oh shit, another fucking boilerplate..
-- Probably you right now.
+> Oh shit, another fucking boilerplate...
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Probably you right now_
 
 A thing that often bugs me about boilerplates is that you're supposed to live by their rules without knowing what's being done at your files, and if you try to look under the hood, the code is written so unnecessarily abstractly that it triggers your interior JS Fatigue and you end up losing hours before even starting to develop your project.
 
@@ -16,9 +16,8 @@ A thing that often bugs me about boilerplates is that you're supposed to live by
 
 
 ## Features
-Testarossa uses npm as a package manager to handle **vendors** for both sass and js. 
-<small>For this reason it is recommended using `npm > 3` since it has flat dependency management.</small>
-You just install a package in the dependencies by running `npm install --save package-name` and then you import either in sass with `@import 'package-name';` or `import 'package-name';` in your js files if it's a js package. 
+Testarossa uses npm as a package manager to handle **vendors** for both sass and js (for this reason it is recommended using a `npm` version >= 3 since it has flat dependency management).
+How? You just install a package in the dependencies by running `npm install --save package-name` and then you import either in sass with `@import 'package-name';` or `import 'package-name';` in your js files if it's a js package. 
 
 The  gulpfile.js contains the main configuration object, and all other tasks are in the `tasks` folder.
 
