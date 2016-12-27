@@ -48,7 +48,7 @@ export default {
     dest: `${buildDir}/fonts`,
   },
 
-  deploy: {
+  deploy: { // TODO put those in .env
     host: 'example.com',
     port: 22,
     user: 'username',

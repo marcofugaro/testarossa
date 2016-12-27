@@ -13,7 +13,7 @@ gulp.task('images', () => {
   return gulp.src(config.images.src)
     .pipe(changed(config.images.dest))
     .pipe(imagemin({
-      use: [pngquant()]
+      use: [pngquant()] // pngquant compresses the pngs much better, but be careful if you use transparent shadows!
     }))
     .pipe(gulp.dest(config.images.dest))
     .pipe(gulpif(config.images.webp, webp()))

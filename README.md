@@ -1,55 +1,73 @@
-# gulp-frontend-boilerplate - WORK IN PROGRESS
-An up-to-date gulp boilerplate for static front-end websites.
+# Testarossa
+> An up-to-date and easily customizable Front-end Boilerplate fueled by Gulp.js
 
-#### [DOWNLOAD](https://github.com/marcofugaro/gulp-frontend-boilerplate/archive/master.zip)
+### [DOWNLOAD](https://github.com/marcofugaro/testarossa/archive/master.zip)
 
-Oh shit, another fucking boilerplate
-Probably you
+> Oh shit, another fucking boilerplate..
+- Probably you right now.
 
-A thing that irritates me about boilerplates is that you're supposed to libe by their rules without knowing what's being done at your files
+A thing that often bugs me about boilerplates is that you're supposed to live by their rules without knowing what's being done at your files, and if you try to look under the hood, the code is written so unnecessarily abstractly that it triggers your interior JS Fatigue and you end up losing hours before even starting to develop your project.
 
-Modularize, if you don't need a thing just remove it
-Easy to customize in the main gulpfile
-Code is written as humanly understandable as possible not as all those hard to understang gulpfile globs.
-so you don't have to first decifrate the project structure if you want to modify the build pipeline
-so it doesn't feel overwhelming
+**Testarossa** is:
+- **Easily confugurable** through the simple and understandable `config` in the main gulpfile
+- **Well documented and commented**, this makes it easy to customize it and bend it to your own will, also code is writtes as more humanly understandable as possible
+- **Modular**, if you don't need a certain task you can just remove it
+- **Up to date** with the latest technologies and tools to make your development easier
 
-Up to date and modern
 
-It uses npm as a package manager for both sass and js. For this reason it is recommended using `npm@3` since it has flat dependency management.
-In sass the packages are required with --- and in js browserify handles dependencies.
+## Features
+Testarossa uses npm as a package manager to handle **vendors** for both sass and js. 
+<small>For this reason it is recommended using `npm > 3` since it has flat dependency management.</small>
+You just install a package in the dependencies by running `npm install --save package-name` and then you import either in sass with `@import 'package-name';` or `import 'package-name';` in your js files if it's a js package. 
 
-The  gulpfile.js contains the main configuration object, and all other tasks are in the `tasks` folder which contains:
+The  gulpfile.js contains the main configuration object, and all other tasks are in the `tasks` folder.
 
-- [Browserify](http://browserify.org/) & [Watchify](https://github.com/substack/watchify) and Babelilfy for ES6 and sourcemapping
-- [SASS](http://sass-lang.com/) with [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer)), compiled with LIBSASS, SMACSS, ITCSS, BEM and sourcemapping
-- [BrowserSync](http://browsersync.io)
-- ESLINT
-- Auto Modernizr
-- Image and SVG minification, WebP
-- Cache control
+- **Scripts** are bundled with Browserify, transpiled with Babel (settings in the `.babelrc` file)
+- **Styles** are written in SCSS, compiled by Libsass, with autoprefixer and css-next, the components are organized following the principles of ITCSS and SMACSS, and the naming convention of BEM
+- [BrowserSync](http://browsersync.io) local server with autoreload
+- Linting with Stylelint (settings in the .stylelintrc file) and Eslint (settings in the .eslintrc file).
+- Sourcemapping for both js and scss
+- Modernizr, automatically detecting and including the tests you use
+- Loseless Image optimization with Imagemin
+- automatic WebP generator and HTML compiler so that the img tags now also include the WebP images (so you don't have to worry about anything!)
+- Cache control directly from the package.json version
+- Supports IE9+
+- HTML partial include with postHTML
+- Automatic SFTP deploy
 
-- IE9+
 
-#### TODO
+## Guide
+After you download it, to install the dependencies run
+```
+npm install
+```
+or just `yarn` if you enjoy high speeds!
+
+The main **commands** you can use are
+```
+npm start
+```
+to compile for development (sourcemaps) and start the development server
+
+```
+npm run build
+```
+to compile for production (minification and optimizations) and have everything ready in the build folder.
+
+Alternatively you can just build for development by setting the enviroment variable NODE_ENV to development and running the command, on OSX you would do it like this:
+```
+NODE_ENV=development npm run build
+```
+or
+```
+NODE_ENV=production npm start
+```
+
+
+## TODO
 - gulp4 branch
 - better console logging (logo and stuff)
 - comment very well your code (see create-react-app)
 - yarn?
-- add .env?
+- add .env
 - DOCUMENTATIOOOOOOON
-
-
-##Installation
-```
-npm install
-```
-
-###Tasks
-- npm start
-- npm run build (production, like compress images, modernizr)
-- NODE_ENV=development npm run build
-
-You can also run `npm start` to execute gulp from the local `node_modules` forler if you haven't installed it on your local machine
-
-BrowserSync automoatically starts a server on localhost3000, additional BrowserSync tools available on 3001
