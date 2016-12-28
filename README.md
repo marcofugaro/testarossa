@@ -23,17 +23,17 @@ How? You just install a package in the dependencies by running `npm install --sa
 
 The  gulpfile.js contains the main configuration object, and all other tasks are in the `tasks` folder.
 
-- **Scripts** are bundled with Browserify, transpiled with Babel (settings in the `.babelrc` file)
-- **Styles** are written in SCSS, compiled by Libsass, with autoprefixer and css-next, the components are organized following the principles of ITCSS and SMACSS, and the naming convention of BEM
+- **Scripts** are bundled with [Browserify](http://browserify.org/), transpiled with [Babel](https://babeljs.io/) (settings in the `.babelrc` file)
+- **Styles** are written in [SCSS](http://sass-lang.com/) with plugins like [autoprefixer](https://github.com/postcss/autoprefixer) and [css-next](http://cssnext.io/), the components are organized following the principles of [ITCSS](https://www.youtube.com/watch?v=1OKZOV-iLj4) and [SMACSS](https://smacss.com/), and the naming convention of [BEM](http://getbem.com/)
 - [BrowserSync](http://browsersync.io) local server with autoreload
-- Linting with Stylelint (settings in the .stylelintrc file) and Eslint (settings in the .eslintrc file).
+- Linting with [Stylelint](http://stylelint.io/) (settings in the .stylelintrc file) and [ESlint](http://eslint.org/) (settings in the .eslintrc file).
 - Sourcemapping for both js and scss
-- Modernizr, automatically detecting and including the tests you use
-- Loseless Image optimization with Imagemin
-- automatic WebP generator and HTML compiler so that the img tags now also include the WebP images (so you don't have to worry about anything!)
-- Cache control directly from the package.json version
+- [Modernizr](https://modernizr.com/), automatically detecting and including the tests you use
+- Loseless Image optimization with [Imagemin](https://github.com/sindresorhus/gulp-imagemin)
+- automatic WebP generator for both the images and the `img` tag (so you don't have to worry about anything!)
+- Cache control for the js and css bundle with version taken directly from the package.json
 - Supports IE9+
-- HTML partial include with postHTML
+- HTML partial include with [PostHTML](https://github.com/posthtml/posthtml)
 - Automatic SFTP deploy
 
 
@@ -55,7 +55,7 @@ npm run build
 ```
 to compile for production (minification and optimizations) and have everything ready in the build folder.
 
-Alternatively you can just build for development by setting the enviroment variable NODE_ENV to development and running the command, on OSX you would do it like this:
+Alternatively you can just build for development by setting the enviroment variable `NODE_ENV` to development and running the command, on OSX you would do it like this:
 ```
 NODE_ENV=development npm run build
 ```
