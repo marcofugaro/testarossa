@@ -6,8 +6,7 @@ import runSequence from 'run-sequence';
 const sourceDir = 'src';
 const buildDir = 'build';
 
-export default {
-
+const config = {
   sourceDir,
   buildDir,
   modernizr: true,
@@ -56,6 +55,7 @@ export default {
   },
 
 };
+export default config;
 
 
 requireDir('./tasks');
