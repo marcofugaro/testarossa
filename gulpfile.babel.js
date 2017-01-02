@@ -47,13 +47,6 @@ const config = {
     dest: `${buildDir}/fonts`,
   },
 
-  deploy: { // TODO put those in .env
-    host: 'example.com',
-    port: 22,
-    user: 'username',
-    pass: '1234',
-  },
-
 };
 export default config;
 

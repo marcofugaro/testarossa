@@ -27,14 +27,16 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 - **Styles** are written in [SCSS](http://sass-lang.com/) with plugins like [autoprefixer](https://github.com/postcss/autoprefixer) and [css-next](http://cssnext.io/), the components are organized following the principles of [ITCSS](https://www.youtube.com/watch?v=1OKZOV-iLj4) and [SMACSS](https://smacss.com/), and the naming convention of [BEM](http://getbem.com/)
 - [BrowserSync](http://browsersync.io) local server with autoreload
 - Linting with [Stylelint](http://stylelint.io/) (settings in the .stylelintrc file) and [ESlint](http://eslint.org/) (settings in the .eslintrc file).
+- Possibility to automatically fix your js code with ESlint autofix option :open_mouth:
 - Sourcemapping for both js and scss
-- [Modernizr](https://modernizr.com/), automatically detecting and including the tests you use
+- [Modernizr](https://modernizr.com/), automatically detecting and including the tests you use :clap:
 - Loseless Image optimization with [Imagemin](https://github.com/sindresorhus/gulp-imagemin)
-- automatic WebP generator for both the images and the `img` tag (so you don't have to worry about anything!)
+- automatic WebP generator for both the images and the `img` tag (so you don't have to worry about anything! :fire:)
 - Cache control for the js and css bundle with version taken directly from the package.json
 - Supports IE9+
 - HTML partial include with [PostHTML](https://github.com/posthtml/posthtml)
 - Automatic SFTP deploy
+- `.env` file to configure your SFTP deploy or your eventual SMTP mailer, API keys or even a database connection
 
 
 ## Guide
@@ -64,11 +66,15 @@ or
 NODE_ENV=production npm start
 ```
 
+There is the option to deploy automatically your website through SFTP, to configure it copy your `.env` file from the `.env.example`, then put your credentials there. Now each time you need to deploy your website you can just run:
+```
+npm run deploy
+```
+
 
 ## TODO
 - gulp4 branch
 - better console logging (logo and stuff)
 - comment very well your code (see create-react-app)
 - yarn?
-- add .env
 - DOCUMENTATIOOOOOOON

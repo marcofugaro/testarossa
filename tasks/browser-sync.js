@@ -1,6 +1,5 @@
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
-import connect from 'gulp-connect-php';
 
 import config from './../gulpfile.babel';
 
