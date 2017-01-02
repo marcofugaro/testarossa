@@ -44,7 +44,7 @@ After you download it, to install the dependencies run
 ```
 npm install
 ```
-or just `yarn` if you enjoy high speeds!
+or just `yarn` if you enjoy high speeds! :red_car::dash:
 
 The main **commands** you can use are
 ```
@@ -73,8 +73,8 @@ npm run deploy
 
 
 ## TODO
-- gulp4 branch
+- website
 - better console logging (logo and stuff)
 - comment very well your code (see create-react-app)
 - yarn?
-- DOCUMENTATIOOOOOOON
+- gulp4 branch
