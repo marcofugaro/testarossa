@@ -31,7 +31,7 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 - Sourcemapping for both js and scss
 - [Modernizr](https://modernizr.com/), automatically detecting and including the tests you use :clap:
 - Loseless Image optimization with [Imagemin](https://github.com/sindresorhus/gulp-imagemin)
-- automatic WebP generator for both the images and the `img` tag (so you don't have to worry about anything! :fire:)
+- automatic WebP generator for both the images and the `img` tag (so you don't have to worry about anything!) :fire:
 - Cache control for the js and css bundle with version taken directly from the package.json
 - Supports IE9+
 - HTML partial include with [PostHTML](https://github.com/posthtml/posthtml)
