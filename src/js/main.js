@@ -1,7 +1,2 @@
-import $ from 'jquery';
-import 'babel-polyfill';
-
-$(() => {
-
-
-});
+import 'babel-polyfill'
+import Scene from './Scene'

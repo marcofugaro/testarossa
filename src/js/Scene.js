@@ -1,0 +1,183 @@
+import * as THREE from 'three'
+import OBJLoader from 'three-obj-loader'
+
+class Scene {
+  FIELDOFVIEW = 60
+  NEAR = 0.1
+  FAR = 5000
+
+  container = document.getElementById('scene')
+
+  constructor() {
+    // let's add the mothod OBJLoader to THREE
+    OBJLoader(THREE)
+
+    // let's bind the methods to the class
+    this.render = this.render.bind(this)
+    this.fitRendererToElement = this.fitRendererToElement.bind(this)
+
+    // let's create the scene, camera and renderer
+    this.Scene = new THREE.Scene()
+    this.Camera = new THREE.PerspectiveCamera(this.FIELDOFVIEW, 1, this.NEAR, this.FAR)
+    this.Renderer = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true,
+    })
+
+    // let's resize the renderer so it fits its parent
+    this.fitRendererToElement(this.container)
+
+    // let's add it to the DOM
+    this.container.appendChild(this.Renderer.domElement)
+
+    // position camera
+    this.Camera.position.set(0, 1, 15)
+    this.Camera.lookAt(new THREE.Vector3(0, 0, 0))
+
+    // let's add the lights
+    const hemisphereLight = new THREE.HemisphereLight(0xffffff)
+    const pointLight = new THREE.PointLight(0xffffff, 1, 100)
+    pointLight.position.set(10, 10, 10)
+    this.Scene.add(hemisphereLight)
+    this.Scene.add(pointLight)
+
+    // add the resize listener
+    window.addEventListener('resize', this.fitRendererToElement.bind(this, this.container))
+
+
+    this.loadTestarossa()
+      .then((obj) => {
+        this.testarossa = obj
+
+        // let's start the render loop
+        requestAnimationFrame(this.render)
+      })
+  }
+
+  /**
+   * fit the renderer to the object we pass as an argument
+   * @param  {node} el - the container to which we'll fit the canvas
+   */
+  fitRendererToElement(el) {
+    const width = el.innerWidth || el.offsetWidth
+    const height = el.innerHeight || el.offsetHeight
+    const ratio = width / height
+
+    this.Renderer.setSize(width, height)
+
+    this.Camera.aspect = ratio
+    this.Camera.updateProjectionMatrix()
+  }
+
+  // the render loop
+  render() {
+    // this.testarossa.rotation.y += 0.05
+
+    // let's rerender and recall this function
+    this.Renderer.render(this.Scene, this.Camera)
+    requestAnimationFrame(this.render)
+  }
+
+  // a promisified Three.js OBJLoader
+  loadObj(url) {
+    return new Promise((resolve, reject) => {
+      const loader = new THREE.OBJLoader()
+      loader.load(url, (obj) => {
+        resolve(obj)
+      },
+      () => {},
+      () => reject(new Error('Failed to load Object')))
+    })
+  }
+
+  // a promisified Three.js ImageLoader
+  loadImg(url) {
+    return new Promise((resolve, reject) => {
+      const loader = new THREE.ImageLoader()
+      loader.load(url, (obj) => {
+        resolve(obj)
+      },
+      () => {},
+      () => reject(new Error('Failed to load Object')))
+    })
+  }
+
+  // let's load the testarossa object
+  async loadTestarossa() {
+    // let's load the resources
+    const [ obj, image ] = await Promise.all([
+      this.loadObj('testarossa.obj'),
+      this.loadImg('images/no-textures.jpg'),
+    ])
+
+    const mesh = obj.children[0]
+
+    // let's apply the texture with the image
+    const texture = new THREE.Texture()
+    texture.image = image
+    texture.needsUpdate = true
+    mesh.material.map = texture
+
+    // let's center the car
+    // mesh.geometry.computeBoundingBox()
+    // console.log(mesh.geometry.boundingBox)
+    mesh.geometry.translate(-1, -1, 2)
+
+    // let's make it bigger
+    obj.scale.set(4, 4, 4)
+
+    this.Scene.add(obj)
+    return obj
+  }
+}
+
+
+export default new Scene()
+
+
+
+
+
+
+
+
+
+
+
+// function handleMouseMove(e) {
+//     mouseX = e.pageX;
+//     mouseY = e.pageY;
+
+
+//   mouseFar();
+// }
+
+
+// function mouseFar() {
+//   const speed = 1;
+
+//   const posZ = (mouseX - horizontalCenter) / 1.5;
+//     TweenLite.to(millenniumFalcon.position, speed, {
+//         z: posZ
+//     });
+
+//   const posX = - (mouseY - verticalCenter) / verticalCenter * 50;
+//     TweenLite.to(millenniumFalcon.position, speed, {
+//         x: posX
+//     });
+// }
+
+// function setAcceleration() {
+//   const speed = 0.5;
+//   const posZ = (mouseX - horizontalCenter) / 1.5;
+
+//   const maxAngle = PI / 3;
+//   const mXrotation = (posZ - millenniumFalcon.position.z) / horizontalCenter * maxAngle * 2;
+//     if ( ! isLooping) {
+//         TweenLite.to(millenniumFalcon.rotation, speed, {
+//             x: mXrotation
+//         });
+//     }
+// }
+
+// }
