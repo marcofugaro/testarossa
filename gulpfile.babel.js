@@ -11,7 +11,7 @@ const config = {
   buildDir,
   modernizr: true,
   autoreload: true,
-  openBrowser: true,
+  openBrowser: false,
 
   markup: {
     src: `${sourceDir}/*.*`,
@@ -22,7 +22,7 @@ const config = {
     src: `${sourceDir}/sass/**/*.scss`,
     dest: `${buildDir}/css`,
     sourcemaps: true,
-    lint: true,
+    lint: false,
     cssnext: false,
   },
 
@@ -32,7 +32,7 @@ const config = {
     srcDir: `${sourceDir}/js`,
     bundleName: 'main.js',
     sourcemaps: true,
-    lint: true,
+    lint: false,
     lintAutofix: false,
   },
 

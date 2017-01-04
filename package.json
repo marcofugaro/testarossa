@@ -41,14 +41,17 @@
   "devDependencies": {
     "autoprefixer": "^6.4.1",
     "babel-core": "^6.14.0",
+    "babel-eslint": "^7.1.1",
     "babel-plugin-lodash": "^3.2.8",
     "babel-preset-latest": "^6.14.0",
+    "babel-preset-stage-2": "^6.18.0",
     "babelify": "^7.3.0",
     "browser-sync": "^2.13.0",
     "browserify": "^13.0.1",
     "browserify-shim": "^3.8.12",
     "del": "^2.2.1",
     "eslint-config-airbnb-base": "^5.0.1",
+    "eslint-plugin-babel": "^4.0.0",
     "eslint-plugin-import": "^1.12.0",
     "gulp": "^3.9.1",
     "gulp-add-src": "^0.2.0",
@@ -88,10 +91,9 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.20.0",
-    "font-awesome": "^4.6.3",
-    "jquery": "^3.1.0",
     "lodash": "^4.15.0",
     "normalize-css": "^2.3.1",
-    "susy": "^2.2.12"
+    "three": "^0.83.0",
+    "three-obj-loader": "^1.0.2"
   }
 }

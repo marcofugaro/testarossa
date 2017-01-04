@@ -1,5 +1,5 @@
 build/
-.env
+.publish/
 
 node_modules/
 *.log
