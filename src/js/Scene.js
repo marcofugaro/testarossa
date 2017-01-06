@@ -8,6 +8,9 @@ class Scene {
 
   container = document.getElementById('scene')
 
+  posX = 0
+  rotationY = 0
+
   constructor() {
     // let's add the mothod OBJLoader to THREE
     OBJLoader(THREE)
@@ -15,6 +18,7 @@ class Scene {
     // let's bind the methods to the class
     this.render = this.render.bind(this)
     this.fitRendererToElement = this.fitRendererToElement.bind(this)
+    this.getInputPosition = this.getInputPosition.bind(this)
 
     // let's create the scene, camera and renderer
     this.Scene = new THREE.Scene()
@@ -31,7 +35,7 @@ class Scene {
     this.container.appendChild(this.Renderer.domElement)
 
     // position camera
-    this.Camera.position.set(0, 1, 15)
+    this.Camera.position.set(0, 3, -30)
     this.Camera.lookAt(new THREE.Vector3(0, 0, 0))
 
     // let's add the lights
@@ -45,13 +49,48 @@ class Scene {
     window.addEventListener('resize', this.fitRendererToElement.bind(this, this.container))
 
 
+
     this.loadTestarossa()
       .then((obj) => {
         this.testarossa = obj
 
+        // attach the interaction events
+        this.addEventListeners()
+
         // let's start the render loop
         requestAnimationFrame(this.render)
       })
+  }
+
+
+  addEventListeners() {
+    document.addEventListener('mousemove', this.getInputPosition)
+  }
+
+
+  // get the position either of the mouse or of the accelerometer
+  getInputPosition(e) {
+    const mouseX = e.pageX
+
+    this.posX = - (mouseX - this.horizontalCenter) * 0.003
+  }
+
+
+  // the render loop
+  render() {
+    // this.testarossa.rotation.y += 0.05
+
+    // calculate the car left and right position
+    this.testarossa.position.x += (this.posX - this.testarossa.position.x) / 20
+
+
+    // calculate the car rotation when driving
+    this.rotationY = (this.posX - this.testarossa.position.x) * 0.1
+    this.testarossa.rotation.y += (this.rotationY - this.testarossa.rotation.y) / 20
+
+    // let's rerender and recall this function
+    this.Renderer.render(this.Scene, this.Camera)
+    requestAnimationFrame(this.render)
   }
 
   /**
@@ -67,15 +106,8 @@ class Scene {
 
     this.Camera.aspect = ratio
     this.Camera.updateProjectionMatrix()
-  }
 
-  // the render loop
-  render() {
-    // this.testarossa.rotation.y += 0.05
-
-    // let's rerender and recall this function
-    this.Renderer.render(this.Scene, this.Camera)
-    requestAnimationFrame(this.render)
+    this.horizontalCenter = window.innerWidth / 2
   }
 
   // a promisified Three.js OBJLoader
@@ -121,7 +153,12 @@ class Scene {
     // let's center the car
     // mesh.geometry.computeBoundingBox()
     // console.log(mesh.geometry.boundingBox)
-    mesh.geometry.translate(-1, -1, 2)
+    mesh.geometry.translate(-1, -1, 4)
+
+
+    // let's flip it 180
+    mesh.geometry.rotateY(Math.PI)
+
 
     // let's make it bigger
     obj.scale.set(4, 4, 4)
