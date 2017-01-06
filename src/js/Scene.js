@@ -25,7 +25,8 @@ class Scene {
     // let's bind the methods to the class
     this.render = this.render.bind(this)
     this.fitRendererToElement = this.fitRendererToElement.bind(this)
-    this.getInputPosition = this.getInputPosition.bind(this)
+    this.getPositionFromMouse = this.getPositionFromMouse.bind(this)
+    this.getPositionFromAccelerometer = this.getPositionFromAccelerometer.bind(this)
 
     // let's create the scene, camera and renderer
     this.Scene = new THREE.Scene()
@@ -57,7 +58,7 @@ class Scene {
 
 
 
-    this.loadTestarossa() // maybe use async constructor?
+    this.loadTestarossa() // GODDAMIT constructor why can't you be async??
       .then((obj) => {
         this.testarossa = obj
 
@@ -71,15 +72,27 @@ class Scene {
 
 
   addEventListeners() {
-    document.addEventListener('mousemove', this.getInputPosition)
+    // if it's touch and it's shorter than 1024px (fucking touch laptops!!)
+    if ('ontouchstart' in window && window.matchMedia('(max-width: 1024px)').matches) {
+      window.addEventListener('deviceorientation', this.getPositionFromAccelerometer, { useCapture: true })
+    } else {
+      document.addEventListener('mousemove', this.getPositionFromMouse)
+    }
   }
 
 
-  // get the position either of the mouse or of the accelerometer
-  getInputPosition(e) {
+  // get the left/right position from the mouse
+  getPositionFromMouse(e) {
     const mouseX = e.pageX
 
     this.posX = - (mouseX - this.horizontalCenter) * this.STREET_FACTOR
+  }
+
+  // get the left/right position from the accelerometer
+  getPositionFromAccelerometer(e) {
+    const orientationY = e.gamma
+
+    this.posX = - (orientationY * 30) * this.STREET_FACTOR
   }
 
 
@@ -147,7 +160,7 @@ class Scene {
         resolve(obj)
       },
       () => {},
-      () => reject(new Error('Failed to load Object')))
+      () => reject(new Error('Failed to load Image')))
     })
   }
 
