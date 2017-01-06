@@ -1,15 +1,22 @@
 import * as THREE from 'three'
 import OBJLoader from 'three-obj-loader'
+import { TweenLite } from 'gsap'
 
 class Scene {
   FIELDOFVIEW = 60
   NEAR = 0.1
   FAR = 5000
 
+  // the time the car takes to reach the mouse (s)
+  SPEED = 3
+  // the factor which determines how much space the car can take up
+  STREET_FACTOR = 0.003
+
   container = document.getElementById('scene')
 
   posX = 0
   rotationY = 0
+
 
   constructor() {
     // let's add the mothod OBJLoader to THREE
@@ -35,7 +42,7 @@ class Scene {
     this.container.appendChild(this.Renderer.domElement)
 
     // position camera
-    this.Camera.position.set(0, 3, -30)
+    this.Camera.position.set(0, 3, -27)
     this.Camera.lookAt(new THREE.Vector3(0, 0, 0))
 
     // let's add the lights
@@ -50,7 +57,7 @@ class Scene {
 
 
 
-    this.loadTestarossa()
+    this.loadTestarossa() // maybe use async constructor?
       .then((obj) => {
         this.testarossa = obj
 
@@ -72,7 +79,7 @@ class Scene {
   getInputPosition(e) {
     const mouseX = e.pageX
 
-    this.posX = - (mouseX - this.horizontalCenter) * 0.003
+    this.posX = - (mouseX - this.horizontalCenter) * this.STREET_FACTOR
   }
 
 
@@ -81,12 +88,22 @@ class Scene {
     // this.testarossa.rotation.y += 0.05
 
     // calculate the car left and right position
-    this.testarossa.position.x += (this.posX - this.testarossa.position.x) / 20
+    // (screw basic lerping, let's use tweenmax!)
+    // this.testarossa.position.x += (this.posX - this.testarossa.position.x) / 20
+    TweenLite.to(this.testarossa.position, this.SPEED, {
+      x: this.posX,
+      ease: Power1.easeOut,
+    })
 
 
     // calculate the car rotation when driving
     this.rotationY = (this.posX - this.testarossa.position.x) * 0.1
-    this.testarossa.rotation.y += (this.rotationY - this.testarossa.rotation.y) / 20
+    // (screw basic lerping, let's use tweenmax!)
+    // this.testarossa.rotation.y += (this.rotationY - this.testarossa.rotation.y) / 20
+    TweenLite.to(this.testarossa.rotation, this.SPEED, {
+      y: this.rotationY,
+      ease: Power1.easeOut,
+    })
 
     // let's rerender and recall this function
     this.Renderer.render(this.Scene, this.Camera)
@@ -170,51 +187,3 @@ class Scene {
 
 
 export default new Scene()
-
-
-
-
-
-
-
-
-
-
-
-// function handleMouseMove(e) {
-//     mouseX = e.pageX;
-//     mouseY = e.pageY;
-
-
-//   mouseFar();
-// }
-
-
-// function mouseFar() {
-//   const speed = 1;
-
-//   const posZ = (mouseX - horizontalCenter) / 1.5;
-//     TweenLite.to(millenniumFalcon.position, speed, {
-//         z: posZ
-//     });
-
-//   const posX = - (mouseY - verticalCenter) / verticalCenter * 50;
-//     TweenLite.to(millenniumFalcon.position, speed, {
-//         x: posX
-//     });
-// }
-
-// function setAcceleration() {
-//   const speed = 0.5;
-//   const posZ = (mouseX - horizontalCenter) / 1.5;
-
-//   const maxAngle = PI / 3;
-//   const mXrotation = (posZ - millenniumFalcon.position.z) / horizontalCenter * maxAngle * 2;
-//     if ( ! isLooping) {
-//         TweenLite.to(millenniumFalcon.rotation, speed, {
-//             x: mXrotation
-//         });
-//     }
-// }
-
-// }
