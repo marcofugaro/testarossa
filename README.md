@@ -76,5 +76,7 @@ npm run deploy
 - website
 - better console logging (logo and stuff)
 - comment very well your code (see create-react-app)
+- eslint warning in editor
+- eslint-plugin-compat
 - yarn?
 - gulp4 branch
