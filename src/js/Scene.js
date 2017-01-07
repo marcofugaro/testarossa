@@ -43,7 +43,7 @@ class Scene {
     this.container.appendChild(this.Renderer.domElement)
 
     // position camera
-    this.Camera.position.set(0, 3, -27)
+    this.Camera.position.set(0, 3, -30)
     this.Camera.lookAt(new THREE.Vector3(0, 0, 0))
 
     // let's add the lights
@@ -102,7 +102,7 @@ class Scene {
 
     // calculate the car left and right position
     // (screw basic lerping, let's use tweenmax!)
-    // this.testarossa.position.x += (this.posX - this.testarossa.position.x) / 20
+    // this.testarossa.position.x += (this.posX - this.testarossa.position.x) / 30
     TweenLite.to(this.testarossa.position, this.SPEED, {
       x: this.posX,
       ease: Power1.easeOut,
@@ -112,7 +112,7 @@ class Scene {
     // calculate the car rotation when driving
     this.rotationY = (this.posX - this.testarossa.position.x) * 0.1
     // (screw basic lerping, let's use tweenmax!)
-    // this.testarossa.rotation.y += (this.rotationY - this.testarossa.rotation.y) / 20
+    // this.testarossa.rotation.y += (this.rotationY - this.testarossa.rotation.y) / 30
     TweenLite.to(this.testarossa.rotation, this.SPEED, {
       y: this.rotationY,
       ease: Power1.easeOut,
