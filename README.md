@@ -24,7 +24,9 @@ How? You just install a package in the dependencies by running `npm install --sa
 The  gulpfile.js contains the main configuration object, and all other tasks are in the `tasks` folder.
 
 - **Scripts** are bundled with [Browserify](http://browserify.org/), transpiled with [Babel](https://babeljs.io/) (settings in the `.babelrc` file)
-- **Styles** are written in [SCSS](http://sass-lang.com/) with plugins like [autoprefixer](https://github.com/postcss/autoprefixer) and [css-next](http://cssnext.io/), the components are organized following the principles of [ITCSS](https://www.youtube.com/watch?v=1OKZOV-iLj4) and [SMACSS](https://smacss.com/), and the naming convention of [BEM](http://getbem.com/)
+- **Styles** are written in [SCSS](http://sass-lang.com/), the components are organized following the principles of [ITCSS](https://www.youtube.com/watch?v=1OKZOV-iLj4) and [SMACSS](https://smacss.com/), and the naming convention of [BEM](http://getbem.com/)
+- Automatic vendor prefixes with [Autoprefixer](https://github.com/postcss/autoprefixer)
+- Support for CSS Custom Property and other futuristic stuff with [cssnext](http://cssnext.io/)
 - [BrowserSync](http://browsersync.io) local server with autoreload
 - Linting with [Stylelint](http://stylelint.io/) (settings in the .stylelintrc file) and [ESlint](http://eslint.org/) (settings in the .eslintrc file).
 - Possibility to automatically fix your js code with ESlint autofix option :open_mouth:
