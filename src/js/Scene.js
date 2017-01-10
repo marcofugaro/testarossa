@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import OBJLoader from 'three-obj-loader'
-import { TweenLite } from 'gsap'
+// import { TweenLite } from 'gsap'
 
 class Scene {
   FIELDOFVIEW = 60
@@ -101,22 +101,22 @@ class Scene {
     // this.testarossa.rotation.y += 0.05
 
     // calculate the car left and right position
-    // (screw basic lerping, let's use tweenmax!)
-    // this.testarossa.position.x += (this.posX - this.testarossa.position.x) / 30
-    TweenLite.to(this.testarossa.position, this.SPEED, {
-      x: this.posX,
-      ease: Power1.easeOut,
-    })
+    this.testarossa.position.x += (this.posX - this.testarossa.position.x) / 30
+    // could be done also with tweenmax:
+    // TweenLite.to(this.testarossa.position, this.SPEED, {
+    //   x: this.posX,
+    //   ease: Power1.easeOut,
+    // })
 
 
     // calculate the car rotation when driving
     this.rotationY = (this.posX - this.testarossa.position.x) * 0.1
-    // (screw basic lerping, let's use tweenmax!)
-    // this.testarossa.rotation.y += (this.rotationY - this.testarossa.rotation.y) / 30
-    TweenLite.to(this.testarossa.rotation, this.SPEED, {
-      y: this.rotationY,
-      ease: Power1.easeOut,
-    })
+    this.testarossa.rotation.y += (this.rotationY - this.testarossa.rotation.y) / 30
+    // could be done also with tweenmax:
+    // TweenLite.to(this.testarossa.rotation, this.SPEED, {
+    //   y: this.rotationY,
+    //   ease: Power1.easeOut,
+    // })
 
     // let's rerender and recall this function
     this.Renderer.render(this.Scene, this.Camera)
