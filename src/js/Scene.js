@@ -43,7 +43,7 @@ class Scene {
     this.container.appendChild(this.Renderer.domElement)
 
     // position camera
-    this.Camera.position.set(0, 3, -30)
+    this.Camera.position.set(0, 7, -30)
     this.Camera.lookAt(new THREE.Vector3(0, 0, 0))
 
     // let's add the lights
@@ -59,6 +59,7 @@ class Scene {
     // let's add the grid
     this.Scene.add(this.createGrid())
 
+    // TODO fire this shit before on constructor
     this.loadTestarossa() // GODDAMIT constructor why can't you be async??
       .then((obj) => {
         this.testarossa = obj
@@ -185,7 +186,7 @@ class Scene {
     // let's center the car
     // mesh.geometry.computeBoundingBox()
     // console.log(mesh.geometry.boundingBox)
-    mesh.geometry.translate(-1, -1, 4)
+    mesh.geometry.translate(-1, 0, 4)
 
 
     // let's flip it 180
@@ -193,7 +194,7 @@ class Scene {
 
 
     // let's make it bigger
-    obj.scale.set(4, 4, 4)
+    mesh.geometry.scale(4, 4, 4)
 
     return obj
   }
@@ -202,7 +203,7 @@ class Scene {
   // create the bottom grid
   createGrid() {
     const depthMap = [
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -221,13 +222,21 @@ class Scene {
       [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
+    const spacingFactor = 15
+    const depthFactor = 5
 
     const lineMaterial = new THREE.LineBasicMaterial({
       color: 0xffffff,
       // opacity: 1,
       // linewidth: 10
     })
+
+
+    // return a vector but with the vertices spaced out by the spaingFactors
+    const getSpacedoutVector = (x, y, z) => new THREE.Vector3(x * spacingFactor, y * depthFactor, z * spacingFactor)
+
 
     const grid = new THREE.Group()
 
@@ -240,7 +249,7 @@ class Scene {
       for (let j = 0; j < depthMap[i].length; j++) {
         // if the depth value is different from the previous or next, we put a vector here
         if (depthMap[i][j] !== depthMap[i][j-1] || depthMap[i][j] !== depthMap[i][j+1]) {
-          lineGeometry.vertices.push(new THREE.Vector3(j, depthMap[i][j], i))
+          lineGeometry.vertices.push(getSpacedoutVector(j, depthMap[i][j], i))
         }
       }
 
@@ -258,10 +267,10 @@ class Scene {
         // better this than looping excluding the first and last, and then putting the vertexes by hand...
         try {
           if (depthMap[j][i] !== depthMap[j-1][i] || depthMap[j][i] !== depthMap[j+1][i]) {
-            lineGeometry.vertices.push(new THREE.Vector3(i, depthMap[j][i], j))
+            lineGeometry.vertices.push(getSpacedoutVector(i, depthMap[j][i], j))
           }
         } catch (e) {
-          lineGeometry.vertices.push(new THREE.Vector3(i, depthMap[j][i], j))
+          lineGeometry.vertices.push(getSpacedoutVector(i, depthMap[j][i], j))
         }
 
       }
@@ -269,6 +278,12 @@ class Scene {
       const line = new THREE.Line(lineGeometry, lineMaterial)
       grid.add(line)
     }
+
+
+console.log(grid)
+
+    // let's center the geometry
+    grid.children.forEach(line => line.geometry.translate(- depthMap[0].length / 2 * spacingFactor, 0, - depthMap.length / 2 * spacingFactor))
 
     return grid
   }
