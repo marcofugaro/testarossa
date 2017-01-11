@@ -56,11 +56,13 @@ class Scene {
     // add the resize listener
     window.addEventListener('resize', this.fitRendererToElement.bind(this, this.container))
 
-
+    // let's add the grid
+    this.Scene.add(this.createGrid())
 
     this.loadTestarossa() // GODDAMIT constructor why can't you be async??
       .then((obj) => {
         this.testarossa = obj
+        this.Scene.add(this.testarossa)
 
         // attach the interaction events
         this.addEventListeners()
@@ -193,8 +195,82 @@ class Scene {
     // let's make it bigger
     obj.scale.set(4, 4, 4)
 
-    this.Scene.add(obj)
     return obj
+  }
+
+
+  // create the bottom grid
+  createGrid() {
+    const depthMap = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 2, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+      [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]
+
+    const lineMaterial = new THREE.LineBasicMaterial({
+      color: 0xffffff,
+      // opacity: 1,
+      // linewidth: 10
+    })
+
+    const grid = new THREE.Group()
+
+    // good old matrix loop from the C days!!!
+    // LOOP TO CREATE THE HORIZONTAL LINES
+    for (let i = 0; i < depthMap.length; i++) {
+      const lineGeometry = new THREE.Geometry()
+
+
+      for (let j = 0; j < depthMap[i].length; j++) {
+        // if the depth value is different from the previous or next, we put a vector here
+        if (depthMap[i][j] !== depthMap[i][j-1] || depthMap[i][j] !== depthMap[i][j+1]) {
+          lineGeometry.vertices.push(new THREE.Vector3(j, depthMap[i][j], i))
+        }
+      }
+
+
+      const line = new THREE.Line(lineGeometry, lineMaterial)
+      grid.add(line)
+    }
+
+    // LOOP TO CREATE THE VERTICAL LINES
+    for (let i = 0; i < depthMap[0].length; i++) {
+      const lineGeometry = new THREE.Geometry()
+
+      for (let j = 0; j < depthMap.length; j++) {
+        // depthMap[j-1][i] (at start or end) becomes undefined[i] which throws an error, so we put a vertex anyway there
+        // better this than looping excluding the first and last, and then putting the vertexes by hand...
+        try {
+          if (depthMap[j][i] !== depthMap[j-1][i] || depthMap[j][i] !== depthMap[j+1][i]) {
+            lineGeometry.vertices.push(new THREE.Vector3(i, depthMap[j][i], j))
+          }
+        } catch (e) {
+          lineGeometry.vertices.push(new THREE.Vector3(i, depthMap[j][i], j))
+        }
+
+      }
+
+      const line = new THREE.Line(lineGeometry, lineMaterial)
+      grid.add(line)
+    }
+
+    return grid
   }
 }
 
