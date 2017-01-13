@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import OBJLoader from 'three-obj-loader'
+import Color from 'color'
 // import { TweenLite } from 'gsap'
 
 class Scene {
@@ -44,6 +45,7 @@ class Scene {
 
     // position camera
     this.Camera.position.set(0, 7, -30)
+    // this.Camera.position.set(0, 300, -1)
     this.Camera.lookAt(new THREE.Vector3(0, 0, 0))
 
     // let's add the lights
@@ -217,25 +219,51 @@ class Scene {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-      [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
     const spacingFactor = 15
     const depthFactor = 5
+    const colorsMap = [
+      ['#ff0000', '#0000ff'],
+      ['#000000', '#ffff00'],
+    ]
 
     const lineMaterial = new THREE.LineBasicMaterial({
       color: 0xffffff,
-      // opacity: 1,
-      // linewidth: 10
+      opacity: 1,
+      linewidth: 2,
+      vertexColors: THREE.VertexColors,
     })
 
 
     // return a vector but with the vertices spaced out by the spaingFactors
     const getSpacedoutVector = (x, y, z) => new THREE.Vector3(x * spacingFactor, y * depthFactor, z * spacingFactor)
+
+    // transform the colorsMap into Colors objects, and reverse it all because the grid is reversed
+    const colorsMapNormalized = colorsMap.map(row => row.map(hex => Color(hex)).reverse()).reverse()
+
+    // return a calculated color from the colorsMap with the coordinates, x is horizontal and y is vertical
+    const getCoordinatesColor = (x, y) => {
+
+      // the value from 0 to 1 of the coordinates
+      const factorX = x / (depthMap[0].length - 1)
+      const factorY = y / (depthMap.length - 1)
+
+      // we first calculate the horizontal color based on x for both top and bottom
+      const colorTopX = colorsMapNormalized[0][0].mix(colorsMapNormalized[0][1], factorX)
+      const colorBottomX = colorsMapNormalized[1][0].mix(colorsMapNormalized[1][1], factorX)
+
+      // then we mix the top and bottom colors, based on y
+      const color = colorTopX.mix(colorBottomX, factorY)
+
+      // now we transform it in a valid three js color
+      return new THREE.Color().setRGB(...color.array().map(rgb => rgb / 255))
+    }
 
 
     const grid = new THREE.Group()
@@ -250,6 +278,7 @@ class Scene {
         // if the depth value is different from the previous or next, we put a vector here
         if (depthMap[i][j] !== depthMap[i][j-1] || depthMap[i][j] !== depthMap[i][j+1]) {
           lineGeometry.vertices.push(getSpacedoutVector(j, depthMap[i][j], i))
+          lineGeometry.colors.push(getCoordinatesColor(j, i))
         }
       }
 
@@ -268,9 +297,11 @@ class Scene {
         try {
           if (depthMap[j][i] !== depthMap[j-1][i] || depthMap[j][i] !== depthMap[j+1][i]) {
             lineGeometry.vertices.push(getSpacedoutVector(i, depthMap[j][i], j))
+            lineGeometry.colors.push(getCoordinatesColor(i, j))
           }
         } catch (e) {
           lineGeometry.vertices.push(getSpacedoutVector(i, depthMap[j][i], j))
+          lineGeometry.colors.push(getCoordinatesColor(i, j))
         }
 
       }
@@ -280,10 +311,16 @@ class Scene {
     }
 
 
-console.log(grid)
 
     // let's center the geometry
-    grid.children.forEach(line => line.geometry.translate(- depthMap[0].length / 2 * spacingFactor, 0, - depthMap.length / 2 * spacingFactor))
+    const gridHorizontalCenter = (depthMap[0].length - 1) / 2 * spacingFactor
+    const gridVerticalCenter = (depthMap.length - 1) / 2 * spacingFactor
+    grid.children.forEach(line => line.geometry.translate(- gridHorizontalCenter, 0, - gridVerticalCenter))
+
+
+    // let's flip it 180
+    grid.children.forEach(line => line.geometry.rotateY(Math.PI))
+
 
     return grid
   }
