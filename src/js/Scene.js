@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import Testarossa from './testarossa'
-import Grid from './grid'
+import Testarossa from './Testarossa'
+import Grid from './Grid'
 
 class Scene {
   FIELDOFVIEW = 60
@@ -54,7 +54,8 @@ class Scene {
     window.addEventListener('resize', this.fitRendererToElement.bind(this, this.container))
 
     // let's add the grid
-    this.Scene.add(Grid.init())
+    this.grid = Grid.init()
+    this.Scene.add(this.grid)
 
     // TODO fire this shit before on constructor
     Testarossa.load() // GODDAMIT constructor why can't you be async??
