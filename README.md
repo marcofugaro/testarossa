@@ -11,7 +11,7 @@
 A thing that often bugs me about boilerplates is that you're supposed to live by their rules without knowing what's being done at your files, and if you try to look under the hood, the code is written so unnecessarily abstractly that it triggers your interior JS Fatigue and you end up losing hours before even starting to develop your project. :finnadie:
 
 **Testarossa** is:
-- :wrench: **Easily confugurable** through the simple and understandable `config` in the main gulpfile
+- :wrench: **Easily configurable** through the simple and understandable `config` in the main gulpfile
 - :memo: **Well documented and commented**, this makes it easy to customize it and bend it to your own will, also code is writtes as more humanly understandable as possible
 - :package: **Modular**, if you don't need a certain task you can just remove it
 - :new: **Up to date** with the latest technologies and tools to make your development easier
