@@ -31,6 +31,7 @@ class Scene {
       alpha: true,
       antialias: true,
     })
+    this.Renderer.setPixelRatio(window.devicePixelRatio)
 
     // let's resize the renderer so it fits its parent
     this.fitRendererToElement(this.container)
@@ -39,14 +40,14 @@ class Scene {
     this.container.appendChild(this.Renderer.domElement)
 
     // position camera
-    this.Camera.position.set(0, 7, -30)
-    // this.Camera.position.set(0, 300, -1)
+    this.Camera.position.set(0, 7, 30)
+    // this.Camera.position.set(0, 300, 0) // look from up
     this.Camera.lookAt(new THREE.Vector3(0, 0, 0))
 
     // let's add the lights
     const hemisphereLight = new THREE.HemisphereLight(0xffffff)
     const pointLight = new THREE.PointLight(0xffffff, 1, 100)
-    pointLight.position.set(10, 10, 10)
+    pointLight.position.set(0, 10, -20)
     this.Scene.add(hemisphereLight)
     this.Scene.add(pointLight)
 
@@ -86,14 +87,14 @@ class Scene {
   getPositionFromMouse(e) {
     const mouseX = e.pageX
 
-    this.posX = - (mouseX - this.horizontalCenter) * this.STREET_FACTOR
+    this.posX = (mouseX - this.horizontalCenter) * this.STREET_FACTOR
   }
 
   // get the left/right position from the accelerometer
   getPositionFromAccelerometer(e) {
     const orientationY = e.gamma
 
-    this.posX = - (orientationY * 30) * this.STREET_FACTOR
+    this.posX = (orientationY * 30) * this.STREET_FACTOR
   }
 
 
@@ -111,7 +112,7 @@ class Scene {
 
 
     // calculate the car rotation when driving
-    this.rotationY = (this.posX - this.testarossa.position.x) * 0.1
+    this.rotationY = - (this.posX - this.testarossa.position.x) * 0.1
     this.testarossa.rotation.y += (this.rotationY - this.testarossa.rotation.y) / 30
     // could be done also with tweenmax:
     // TweenLite.to(this.testarossa.rotation, 3, {

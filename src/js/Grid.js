@@ -101,10 +101,6 @@ const Grid = {
     grid.children.forEach(line => line.geometry.translate(- gridHorizontalCenter, 0, - gridVerticalCenter))
 
 
-    // let's flip it 180
-    grid.children.forEach(line => line.geometry.rotateY(Math.PI))
-
-
     return grid
   },
 

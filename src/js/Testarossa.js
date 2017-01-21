@@ -25,10 +25,6 @@ const Testarossa = {
     mesh.geometry.translate(-1, 0, 4)
 
 
-    // let's flip it 180
-    mesh.geometry.rotateY(Math.PI)
-
-
     // let's make it bigger
     mesh.geometry.scale(4, 4, 4)
 
