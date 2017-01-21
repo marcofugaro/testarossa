@@ -1,13 +1,10 @@
 import * as THREE from 'three'
-import OBJLoader from 'three-obj-loader'
-
-// let's add the mothod OBJLoader to THREE
-OBJLoader(THREE)
+import { OBJLoader } from 'three-addons'
 
 // a promisified Three.js OBJLoader
 export function loadObj(url) {
   return new Promise((resolve, reject) => {
-    const loader = new THREE.OBJLoader()
+    const loader = new OBJLoader()
     loader.load(url, (obj) => {
       resolve(obj)
     },
