@@ -37,6 +37,7 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 - Cache control for the js and css bundle with version taken directly from the package.json
 - Supports IE9+
 - HTML partial include with [PostHTML](https://github.com/posthtml/posthtml)
+- Possibility to check if you're in development or production in your js files like this `process.env.NODE_ENV === 'development'` with [envify](https://github.com/hughsk/envify)
 - Automatic SFTP deploy
 - `.env` file to configure your SFTP deploy or your eventual SMTP mailer, API keys or even a database connection
 
