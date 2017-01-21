@@ -50,6 +50,7 @@
     "browserify": "^13.0.1",
     "browserify-shim": "^3.8.12",
     "del": "^2.2.1",
+    "envify": "^4.0.0",
     "eslint-config-airbnb-base": "^5.0.1",
     "eslint-plugin-babel": "^4.0.0",
     "eslint-plugin-import": "^1.12.0",
@@ -94,6 +95,7 @@
     "color": "^1.0.3",
     "lodash": "^4.15.0",
     "normalize-css": "^2.3.1",
+    "stats.js": "^0.17.0",
     "three": "^0.83.0",
     "three-addons": "^1.0.2"
   }

@@ -58,6 +58,12 @@ class Scene {
     this.grid = Grid.init()
     this.Scene.add(this.grid)
 
+    if (process.env.NODE_ENV === 'development') {
+      const Stats = require('stats.js')
+      this.stats = new Stats()
+      this.container.appendChild(this.stats.dom)
+    }
+
     // TODO fire this shit before on constructor
     Testarossa.load() // GODDAMIT constructor why can't you be async??
       .then((obj) => {
@@ -122,6 +128,9 @@ class Scene {
 
     // let's rerender and recall this function
     this.Renderer.render(this.Scene, this.Camera)
+    if (this.stats) {
+      this.stats.update()
+    }
     requestAnimationFrame(this.render)
   }
 

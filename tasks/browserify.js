@@ -5,6 +5,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import buffer from 'vinyl-buffer';
 import watchify from 'watchify';
 import babelify from 'babelify';
+import envify from 'envify';
 import browserifyShim from 'browserify-shim';
 import browserify from 'browserify';
 import notify from 'gulp-notify';
@@ -32,6 +33,7 @@ gulp.task('browserify', () => {
 
   const transforms = [
     { name: babelify }, // options are taken from .babelrc
+    { name: envify },
     { name: browserifyShim, options: { global: true } },
   ];
 
