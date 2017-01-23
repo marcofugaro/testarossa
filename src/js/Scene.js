@@ -1,22 +1,23 @@
 import * as THREE from 'three'
 import Testarossa from './Testarossa'
 import Grid from './Grid'
+import Postprocessing from './Postprocessing'
 
-class Scene {
-  FIELDOFVIEW = 60
-  NEAR = 0.1
-  FAR = 5000
+const Scene = {
+  FIELDOFVIEW: 60,
+  NEAR: 0.1,
+  FAR: 5000,
 
   // the factor which determines how much space the car can take up
-  STREET_FACTOR = 0.003
+  STREET_FACTOR: 0.003,
 
-  container = document.getElementById('scene')
+  container: document.getElementById('scene'),
 
-  posX = 0
-  rotationY = 0
+  posX: 0,
+  rotationY: 0,
 
 
-  constructor() {
+  init() {
 
     // let's bind the methods to the class
     this.render = this.render.bind(this)
@@ -28,10 +29,13 @@ class Scene {
     this.Scene = new THREE.Scene()
     this.Camera = new THREE.PerspectiveCamera(this.FIELDOFVIEW, 1, this.NEAR, this.FAR)
     this.Renderer = new THREE.WebGLRenderer({
-      alpha: true,
+      alpha: true, // these two parameters get fucking ignored because we use another renderer with postprocessing
       antialias: true,
     })
     this.Renderer.setPixelRatio(window.devicePixelRatio)
+    this.Renderer.setClearColor(0x112342, 1)
+
+    this.Clock = new THREE.Clock()
 
     // let's resize the renderer so it fits its parent
     this.fitRendererToElement(this.container)
@@ -58,11 +62,15 @@ class Scene {
     this.grid = Grid.init()
     this.Scene.add(this.grid)
 
+    // let's add the fps thing if we're in development
     if (process.env.NODE_ENV === 'development') {
-      const Stats = require('stats.js')
+      const Stats = require('stats.js') // ideally this would be loaded async
       this.stats = new Stats()
       this.container.appendChild(this.stats.dom)
     }
+
+    // let's add the postprocessing
+    this.Composer = Postprocessing.init()
 
     // TODO fire this shit before on constructor
     Testarossa.load() // GODDAMIT constructor why can't you be async??
@@ -76,7 +84,7 @@ class Scene {
         // let's start the render loop
         requestAnimationFrame(this.render)
       })
-  }
+  },
 
 
   addEventListeners() {
@@ -86,7 +94,7 @@ class Scene {
     } else {
       document.addEventListener('mousemove', this.getPositionFromMouse)
     }
-  }
+  },
 
 
   // get the left/right position from the mouse
@@ -94,14 +102,14 @@ class Scene {
     const mouseX = e.pageX
 
     this.posX = (mouseX - this.horizontalCenter) * this.STREET_FACTOR
-  }
+  },
 
   // get the left/right position from the accelerometer
   getPositionFromAccelerometer(e) {
     const orientationY = e.gamma
 
     this.posX = (orientationY * 30) * this.STREET_FACTOR
-  }
+  },
 
 
   // the render loop
@@ -127,12 +135,19 @@ class Scene {
     // })
 
     // let's rerender and recall this function
-    this.Renderer.render(this.Scene, this.Camera)
+    if (this.Composer) {
+      // this.Composer.render(this.Clock.getDelta())
+      this.Composer.render()
+    } else {
+      this.Renderer.render(this.Scene, this.Camera)
+    }
+
     if (this.stats) {
       this.stats.update()
     }
+
     requestAnimationFrame(this.render)
-  }
+  },
 
   /**
    * fit the renderer to the object we pass as an argument
@@ -149,9 +164,9 @@ class Scene {
     this.Camera.updateProjectionMatrix()
 
     this.horizontalCenter = window.innerWidth / 2
-  }
+  },
 
 }
 
 
-export default new Scene()
+export default Scene
