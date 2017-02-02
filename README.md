@@ -83,3 +83,4 @@ npm run deploy
 - yarn?
 - gulp4 branch
 - `grep TODO -rn --exclude-dir=node_modules .`
+- setup task for v2
