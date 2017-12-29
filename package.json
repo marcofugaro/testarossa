@@ -1,6 +1,6 @@
 {
   "name": "gulp-frontend-boilerplate",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Gulp boilerplate for a standard Front-end website",
   "author": "Marco Fugaro <marco.fugaro@gmail.com> (http://marcofugaro.it/)",
   "repository": {
