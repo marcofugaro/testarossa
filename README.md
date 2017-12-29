@@ -1,7 +1,7 @@
 # Testarossa
 > An up-to-date and easily customizable Front-end Boilerplate fueled by Gulp.js
 
-### [DOWNLOAD](https://github.com/marcofugaro/testarossa/archive/master.zip)
+### [DOWNLOAD](https://github.com/marcofugaro/testarossa/archive/master.zip) - [YEOMAN GENERATOR](https://github.com/marcofugaro/generator-testarossa)
 
 
 > Oh shit, another fucking boilerplate...
@@ -42,6 +42,20 @@ The  gulpfile.js contains the main configuration object, and all other tasks are
 - Possibility to check if you're in development or production in your js files like this `process.env.NODE_ENV === 'development'` with [envify](https://github.com/hughsk/envify)
 - Automatic SFTP deploy
 - `.env` file to configure your SFTP deploy or your eventual SMTP mailer, API keys or even a database connection
+
+
+## Getting started
+The easiest way is to use the [Yeoman generator](https://github.com/marcofugaro/generator-testarossa), you get to configure more stuff that way.
+
+Alternatively, run:
+
+```
+curl -fsSL https://github.com/marcofugaro/testarossa/archive/master.tar.gz | tar -xz --strip-components=2 testarossa-master/boilerplate
+```
+
+Otherwise you can `git clone` or [download](https://github.com/marcofugaro/testarossa/archive/master.zip) this repo and get the contents of the `boilerplate` folder.
+
+After you downloaded the files, create the .env file by running `cp .env.example .env`.
 
 
 ## TODO
