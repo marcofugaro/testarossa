@@ -1,7 +1,7 @@
 # Testarossa
 > An up-to-date and easily customizable Front-end Boilerplate fueled by Gulp.js
 
-### [DOWNLOAD](https://github.com/marcofugaro/testarossa/archive/master.zip)&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;[YEOMAN GENERATOR](https://github.com/marcofugaro/generator-testarossa)
+### [DOWNLOAD](https://github.com/marcofugaro/testarossa/archive/master.zip)&nbsp;&nbsp;-&nbsp;&nbsp;[YEOMAN GENERATOR](https://github.com/marcofugaro/generator-testarossa)
 
 
 > Oh shit, another fucking boilerplate...
