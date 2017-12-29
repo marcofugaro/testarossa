@@ -1,20 +1,20 @@
-import gulp from 'gulp';
-import gulpif from 'gulp-if';
-import sourcemaps from 'gulp-sourcemaps';
-import sass from 'gulp-sass';
-import notify from 'gulp-notify';
-import browserSync from 'browser-sync';
-import postcss from 'gulp-postcss';
-import cssnext from 'postcss-cssnext';
-import sassGlob from 'gulp-sass-glob';
-import moduleImporter from 'sass-module-importer';
+import gulp from 'gulp'
+import gulpif from 'gulp-if'
+import sourcemaps from 'gulp-sourcemaps'
+import sass from 'gulp-sass'
+import notify from 'gulp-notify'
+import browserSync from 'browser-sync'
+import postcss from 'gulp-postcss'
+import cssnext from 'postcss-cssnext'
+import sassGlob from 'gulp-sass-glob'
+import moduleImporter from 'sass-module-importer'
 
-import config from './../gulpfile.babel';
+import config from './../gulpfile.babel'
 
 
 gulp.task('styles', () => {
   // TODO set it 'compressed' when this issue is solved https://github.com/sass/node-sass/issues/957
-  const outputStyle = global.IS_PRODUCTION ? 'compressed' : 'expanded';
+  const outputStyle = global.IS_PRODUCTION ? 'compressed' : 'expanded'
 
   return gulp.src(config.styles.src)
     .pipe(gulpif(config.styles.sourcemaps, sourcemaps.init()))
@@ -33,5 +33,5 @@ gulp.task('styles', () => {
     ])))
     .pipe(gulpif(config.styles.sourcemaps, sourcemaps.write('./')))
     .pipe(gulp.dest(config.styles.dest))
-    .pipe(gulpif(config.autoreload, browserSync.stream()));
-});
+    .pipe(gulpif(config.autoreload, browserSync.stream()))
+})

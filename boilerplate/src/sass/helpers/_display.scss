@@ -1,11 +1,11 @@
-.hidden { display: none; }
+.hidden { display: none }
 
-.invisible { visibility: hidden; }
+.invisible { visibility: hidden }
 
-.no-outline:focus, .no-outline:active { outline: none; }
-.no-outline::-moz-focus-inner { border: 0; }
+.no-outline:focus, .no-outline:active { outline: none }
+.no-outline::-moz-focus-inner { border: 0 }
 
 .no-link {
-  text-decoration: none;
-  color: inherit;
+  text-decoration: none
+  color: inherit
 }

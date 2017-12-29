@@ -1,10 +1,10 @@
-import gulp from 'gulp';
-import requireDir from 'require-dir';
-import runSequence from 'run-sequence';
+import gulp from 'gulp'
+import requireDir from 'require-dir'
+import runSequence from 'run-sequence'
 
 
-const sourceDir = 'src';
-const buildDir = 'build';
+const sourceDir = 'src'
+const buildDir = 'build'
 
 const config = {
   sourceDir,
@@ -46,29 +46,29 @@ const config = {
     dest: `${buildDir}/fonts`,
   },
 
-};
-export default config;
+}
+export default config
 
 
-requireDir('./tasks');
+requireDir('./tasks')
 
 
 gulp.task('dev', ['clean'], (cb) => {
   // make NODE_ENV default to development
-  process.env.NODE_ENV = process.env.NODE_ENV === 'production' ? process.env.NODE_ENV : 'development';
+  process.env.NODE_ENV = process.env.NODE_ENV === 'production' ? process.env.NODE_ENV : 'development'
 
-  global.IS_PRODUCTION = process.env.NODE_ENV === 'production';
+  global.IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
-  runSequence(['markup', 'stylelint', 'styles', 'eslint', 'browserify', 'images', 'fonts'], 'watch', cb);
-});
+  runSequence(['markup', 'stylelint', 'styles', 'eslint', 'browserify', 'images', 'fonts'], 'watch', cb)
+})
 
 gulp.task('build', ['clean'], (cb) => {
   // make NODE_ENV default to production
-  process.env.NODE_ENV = process.env.NODE_ENV === 'development' ? process.env.NODE_ENV : 'production';
+  process.env.NODE_ENV = process.env.NODE_ENV === 'development' ? process.env.NODE_ENV : 'production'
 
-  global.IS_PRODUCTION = process.env.NODE_ENV === 'production';
+  global.IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
-  runSequence(['markup', 'stylelint', 'styles', 'eslint', 'browserify', 'images', 'fonts'], 'modernizr', 'sizereport', cb);
-});
+  runSequence(['markup', 'stylelint', 'styles', 'eslint', 'browserify', 'images', 'fonts'], 'modernizr', 'sizereport', cb)
+})
 
-gulp.task('default', ['dev']);
+gulp.task('default', ['dev'])

@@ -1,18 +1,18 @@
-import gulp from 'gulp';
-import gulpif from 'gulp-if';
-import source from 'vinyl-source-stream';
-import sourcemaps from 'gulp-sourcemaps';
-import buffer from 'vinyl-buffer';
-import watchify from 'watchify';
-import babelify from 'babelify';
-import envify from 'envify';
-import browserifyShim from 'browserify-shim';
-import browserify from 'browserify';
-import notify from 'gulp-notify';
-import uglify from 'gulp-uglify';
-import browserSync from 'browser-sync';
+import gulp from 'gulp'
+import gulpif from 'gulp-if'
+import source from 'vinyl-source-stream'
+import sourcemaps from 'gulp-sourcemaps'
+import buffer from 'vinyl-buffer'
+import watchify from 'watchify'
+import babelify from 'babelify'
+import envify from 'envify'
+import browserifyShim from 'browserify-shim'
+import browserify from 'browserify'
+import notify from 'gulp-notify'
+import uglify from 'gulp-uglify'
+import browserSync from 'browser-sync'
 
-import config from './../gulpfile.babel';
+import config from './../gulpfile.babel'
 
 
 gulp.task('browserify', () => {
@@ -23,11 +23,11 @@ gulp.task('browserify', () => {
     cache: {}, // required for watchify
     packageCache: {}, // required for watchify
     fullPaths: !global.IS_PRODUCTION, // required to be true only for watchify
-  });
+  })
 
   if (!global.IS_PRODUCTION) {
-    b = watchify(b);
-    b.on('update', bundle);
+    b = watchify(b)
+    b.on('update', bundle)
   }
 
 
@@ -35,11 +35,11 @@ gulp.task('browserify', () => {
     { name: babelify }, // options are taken from .babelrc
     { name: envify },
     { name: browserifyShim, options: { global: true } },
-  ];
+  ]
 
   transforms.forEach((transform) => {
-    b.transform(transform.name, transform.options);
-  });
+    b.transform(transform.name, transform.options)
+  })
 
 
   function bundle() {
@@ -54,8 +54,8 @@ gulp.task('browserify', () => {
       .pipe(gulpif(global.IS_PRODUCTION, uglify()))
       .pipe(gulpif(config.scripts.sourcemaps, sourcemaps.write('./')))
       .pipe(gulp.dest(config.scripts.dest))
-      .pipe(gulpif(config.autoreload, browserSync.stream()));
+      .pipe(gulpif(config.autoreload, browserSync.stream()))
   }
 
-  return bundle();
-});
+  return bundle()
+})

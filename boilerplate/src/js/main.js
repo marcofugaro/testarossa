@@ -1,7 +1,7 @@
-import $ from 'jquery';
-import 'babel-polyfill';
+import $ from 'jquery'
+import 'babel-polyfill'
 
 $(() => {
 
 
-});
+})

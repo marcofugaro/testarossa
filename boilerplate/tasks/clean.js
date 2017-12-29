@@ -1,9 +1,9 @@
-import gulp from 'gulp';
-import del from 'del';
+import gulp from 'gulp'
+import del from 'del'
 
-import config from './../gulpfile.babel';
+import config from './../gulpfile.babel'
 
 
 gulp.task('clean', () => {
-  return del([config.buildDir]);
-});
+  return del([config.buildDir])
+})

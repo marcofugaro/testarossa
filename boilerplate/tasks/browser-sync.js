@@ -1,7 +1,7 @@
-import gulp from 'gulp';
-import browserSync from 'browser-sync';
+import gulp from 'gulp'
+import browserSync from 'browser-sync'
 
-import config from './../gulpfile.babel';
+import config from './../gulpfile.babel'
 
 
 gulp.task('browser-sync', () => {
@@ -11,5 +11,5 @@ gulp.task('browser-sync', () => {
     },
     notify: false,
     open: config.openBrowser,
-  });
-});
+  })
+})

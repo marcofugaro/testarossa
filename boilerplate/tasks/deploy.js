@@ -1,13 +1,13 @@
-import gulp from 'gulp';
-import sftp from 'gulp-sftp';
-import dotenv from 'dotenv';
+import gulp from 'gulp'
+import sftp from 'gulp-sftp'
+import dotenv from 'dotenv'
 
-import config from './../gulpfile.babel';
+import config from './../gulpfile.babel'
 
 
 gulp.task('deploy', ['build'], () => {
   // let's read the .env file
-  dotenv.config();
+  dotenv.config()
 
   return gulp.src(config.buildDir)
     .pipe(sftp({
@@ -16,5 +16,5 @@ gulp.task('deploy', ['build'], () => {
       user: process.env.SFTP_USER,
       pass: process.env.SFTP_PASS,
       remotePath: process.env.SFTP_REMOTEPATH,
-    }));
-});
+    }))
+})
