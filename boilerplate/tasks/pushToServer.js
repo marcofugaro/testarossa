@@ -1,14 +1,10 @@
 import gulp from 'gulp'
 import sftp from 'gulp-sftp'
-import dotenv from 'dotenv'
 
-import config from './../gulpfile.babel'
+import { config } from '../gulpfile'
 
 
-gulp.task('deploy', ['build'], () => {
-  // let's read the .env file
-  dotenv.config()
-
+export function pushToServer() {
   return gulp.src(config.buildDir)
     .pipe(sftp({
       host: process.env.SFTP_HOST,
@@ -17,4 +13,4 @@ gulp.task('deploy', ['build'], () => {
       pass: process.env.SFTP_PASS,
       remotePath: process.env.SFTP_REMOTEPATH,
     }))
-})
+}

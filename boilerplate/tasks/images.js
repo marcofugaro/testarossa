@@ -6,10 +6,10 @@ import webp from 'gulp-webp'
 import gulpif from 'gulp-if'
 import browserSync from 'browser-sync'
 
-import config from './../gulpfile.babel'
+import { config } from '../gulpfile'
 
 
-gulp.task('images', () => {
+export function images() {
   return gulp.src(config.images.src)
     .pipe(changed(config.images.dest))
     .pipe(imagemin({
@@ -19,4 +19,4 @@ gulp.task('images', () => {
     .pipe(gulpif(config.images.webp, webp()))
     .pipe(gulpif(config.images.webp, gulp.dest(config.images.dest)))
     .pipe(gulpif(config.autoreload, browserSync.stream()))
-})
+}

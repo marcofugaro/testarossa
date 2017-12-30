@@ -1,12 +1,18 @@
 import gulp from 'gulp'
+import { fonts, images, lintScripts, lintStyles, markup, styles } from '.'
 
-import config from './../gulpfile.babel'
+import { config } from '../gulpfile'
 
 
-gulp.task('watch', ['browser-sync'], () => {
-  gulp.watch(config.markup.src, ['markup'])
-  gulp.watch(config.styles.src, ['stylelint', 'styles'])
-  gulp.watch(config.scripts.src, ['eslint']) // TODO add conditional watch with linting
-  gulp.watch(config.images.src, ['images'])
-  gulp.watch(config.fonts.src, ['fonts'])
-})
+export function watch() {
+  gulp.watch(config.markup.src, markup)
+  gulp.watch(config.styles.src, styles)
+  gulp.watch(config.images.src, images)
+  gulp.watch(config.fonts.src, fonts)
+  if (config.styles.lint) {
+    gulp.watch(config.styles.src, lintStyles)
+  }
+  if (config.scripts.lint) {
+    gulp.watch(config.scripts.src, lintScripts)
+  }
+}

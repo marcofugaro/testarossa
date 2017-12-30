@@ -1,12 +1,12 @@
 import gulp from 'gulp'
 import sizereport from 'gulp-sizereport'
 
-import config from './../gulpfile.babel'
+import { config } from '../gulpfile'
 
 
-gulp.task('sizereport', () => {
+export function sizeReport() {
   return gulp.src(`${config.buildDir}/**/*.{css,js}`)
     .pipe(sizereport({
       gzip: true,
     }))
-})
+}

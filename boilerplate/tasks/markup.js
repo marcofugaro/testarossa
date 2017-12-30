@@ -7,10 +7,10 @@ import webp from 'posthtml-webp'
 import versionAppend from 'gulp-version-append'
 import browserSync from 'browser-sync'
 
-import config from './../gulpfile.babel'
+import { config } from '../gulpfile'
 
 
-gulp.task('markup', () => {
+export function markup() {
   return gulp.src(config.markup.src, { base: config.sourceDir })
     .pipe(changed(config.markup.dest))
     .pipe(posthtml([
@@ -20,4 +20,4 @@ gulp.task('markup', () => {
     .pipe(versionAppend(['css', 'js']))
     .pipe(gulp.dest(config.markup.dest))
     .pipe(gulpif(config.autoreload, browserSync.stream()))
-})
+}

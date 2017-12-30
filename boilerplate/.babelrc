@@ -1,4 +1,10 @@
 {
-  "presets": ["latest", "stage-2"],
+  "presets": [
+    ["@babel/preset-env", {
+      "modules": false,
+      "useBuiltIns": "usage"
+    }],
+    "@babel/preset-stage-0"
+  ],
   "plugins": ["lodash"]
 }

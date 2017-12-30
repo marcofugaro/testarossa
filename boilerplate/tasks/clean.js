@@ -1,9 +1,9 @@
 import gulp from 'gulp'
 import del from 'del'
 
-import config from './../gulpfile.babel'
+import { config } from '../gulpfile'
 
 
-gulp.task('clean', () => {
-  return del([config.buildDir])
-})
+export function clean() {
+  return del(config.buildDir)
+}
