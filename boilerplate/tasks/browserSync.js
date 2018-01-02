@@ -10,7 +10,7 @@ export function browserSync() {
     server: {
       baseDir: config.buildDir,
     },
-    https: true,
+    https: config.https,
     httpModule: config.http2 ? 'http2' : null,
     notify: false,
     open: config.openBrowser,

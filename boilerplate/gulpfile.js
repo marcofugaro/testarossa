@@ -5,6 +5,17 @@ import dotenv from 'dotenv'
 // let's read the .env file
 dotenv.config()
 
+if (process.title.includes('gulp dev')) {
+  // make NODE_ENV default to development
+  process.env.NODE_ENV = process.env.NODE_ENV === 'production' ? process.env.NODE_ENV : 'development'
+} else {
+  // make NODE_ENV default to production
+  process.env.NODE_ENV = process.env.NODE_ENV === 'development' ? process.env.NODE_ENV : 'production'
+}
+
+global.IS_PRODUCTION = process.env.NODE_ENV === 'production'
+
+
 const sourceDir = 'src'
 const buildDir = 'build'
 
@@ -13,6 +24,8 @@ export const config = {
   buildDir,
   autoreload: true,
   openBrowser: false,
+  https: true,
+  http2: true,
 
   markup: {
     src: `${sourceDir}/*.*`,
@@ -20,7 +33,7 @@ export const config = {
   },
 
   styles: {
-    src: `${sourceDir}/sass/**/*.scss`,
+    src: `${sourceDir}/scss/**/*.scss`,
     dest: `${buildDir}/css`,
     sourcemaps: true,
     lint: false,
@@ -49,31 +62,16 @@ export const config = {
 }
 
 
-gulp.task('dev', (() => {
-  // make NODE_ENV default to development
-  process.env.NODE_ENV = process.env.NODE_ENV === 'production' ? process.env.NODE_ENV : 'development'
+gulp.task('dev', gulp.series(
+  clean,
+  gulp.parallel(markup, lintStyles, styles, lintScripts, scripts, images, fonts),
+  gulp.parallel(browserSync, watch),
+))
 
-  global.IS_PRODUCTION = process.env.NODE_ENV === 'production'
-
-  return gulp.series(
-    clean,
-    gulp.parallel(markup, lintStyles, styles, lintScripts, scripts, images, fonts),
-    browserSync,
-    watch,
-  )
-})())
-
-gulp.task('build', (() => {
-  // make NODE_ENV default to production
-  process.env.NODE_ENV = process.env.NODE_ENV === 'development' ? process.env.NODE_ENV : 'production'
-
-  global.IS_PRODUCTION = process.env.NODE_ENV === 'production'
-
-  return gulp.series(
-    clean,
-    gulp.parallel(markup, lintStyles, styles, lintScripts, scripts, images, fonts),
-    sizeReport,
-  )
-})())
+gulp.task('build', gulp.series(
+  clean,
+  gulp.parallel(markup, lintStyles, styles, lintScripts, scripts, images, fonts),
+  sizeReport,
+))
 
 gulp.task('deploy', gulp.series('build', pushToServer))

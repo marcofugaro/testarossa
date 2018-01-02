@@ -45,5 +45,6 @@ export function scripts() {
     .pipe(gulpif(config.autoreload, browserSync.stream()))
 }
 
+// watch mode and sourcemaps, read the webpack stream config
 
 // .pipe(gulpif(global.IS_PRODUCTION, uglify()))

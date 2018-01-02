@@ -1,15 +1,21 @@
+// VARIABLES & MIXINS
 @import 'variables/*';
 @import 'mixins/*';
 
-@import 'font-awesome';
+// VENDORS
 @import 'normalize-css';
-@import 'susy';
+$fa-font-path: 'fonts';
+@import 'font-awesome/scss/font-awesome';
 
+// BASE STYLES
 @import 'base/*';
 
+// SMACSS MODULES
 @import 'layout/*';
 @import 'components/*';
 
+// CLASS HELPERS
 @import 'helpers/*';
 
+// SHAME.CSS
 @import 'shame';

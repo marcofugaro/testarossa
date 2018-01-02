@@ -1,0 +1,12 @@
+{
+  "name": "<%= title %>",
+  "description": "<%= description %>",
+  "start_url": ".",
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "icons": [{
+    "src": "images/icon.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }]
+}
