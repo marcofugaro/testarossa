@@ -63,7 +63,6 @@ After you downloaded the files, create the .env file by running `cp .env.example
 - better console logging (logo and stuff)
 - comment very well your code (see create-react-app)
 - eslint-plugin-compat
-- yarn?
-- gulp4 branch
+- yeoman generator
+- contentImage for gulp-notify
 - `grep TODO -rn --exclude-dir=node_modules .`
-- setup task for v2

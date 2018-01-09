@@ -58,6 +58,7 @@
     "gulp-webp": "^2.3.0",
     "http2": "^3.3.7",
     "imagemin-pngquant": "^5.0.0",
+    "outdent": "^0.4.1",
     "posthtml-include": "^1.1.0",
     "posthtml-webp": "^1.0.0",
     "sass-module-importer": "^1.2.1",
@@ -65,7 +66,8 @@
     "stylelint-config-sass-guidelines": "^4.0.1",
     "stylelint-scss": "^2.2.0",
     "vinyl-named": "^1.1.0",
-    "webpack": "^3.10.0",
+    "webpack": "4.0.0-alpha.3",
+    "webpack-format-messages": "^1.0.1",
     "webpack-stream": "^4.0.0"
   }
 }

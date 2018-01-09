@@ -24,7 +24,6 @@ export const config = {
   buildDir,
   autoreload: true,
   openBrowser: false,
-  https: true,
   http2: true,
 
   markup: {
@@ -35,16 +34,14 @@ export const config = {
   styles: {
     src: `${sourceDir}/scss/**/*.scss`,
     dest: `${buildDir}/css`,
-    sourcemaps: true,
-    lint: false,
+    prodSourcemaps: true,
+    lint: false, // TODO handle lint scripts
   },
 
   scripts: {
-    src: `${sourceDir}/js/**/*.js`,
+    src: `${sourceDir}/js/main.js`,
     dest: `${buildDir}/js`,
-    srcDir: `${sourceDir}/js`,
-    bundleName: 'main.js',
-    sourcemaps: true,
+    prodSourcemaps: true,
     lint: false,
   },
 
@@ -64,8 +61,8 @@ export const config = {
 
 gulp.task('dev', gulp.series(
   clean,
-  gulp.parallel(markup, lintStyles, styles, lintScripts, scripts, images, fonts),
-  gulp.parallel(browserSync, watch),
+  gulp.parallel(markup, lintStyles, styles, lintScripts, images, fonts),
+  gulp.parallel(scripts, browserSync, watch), // those scripts keep watching
 ))
 
 gulp.task('build', gulp.series(
